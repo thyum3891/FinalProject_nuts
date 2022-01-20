@@ -1,4 +1,4 @@
-package com.kh.nuts.map;
+package com.kh.nuts.mapController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,29 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.nuts.shopping.Passing;
-import com.kh.nuts.shopping.ShoppingVO;
 
 @Controller
 public class MapController {
-	static private List<ShoppingVO> shopList;
-	{
-		if(shopList == null) {
-			shopList = new Passing().passing();
-		}
-	}
-	
-	@RequestMapping("/shop/list")
-	public String shop(Model model) {
-		try {
-			model.addAttribute("shopList",shopList);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "/shop/list";
-	}
 	@RequestMapping("/mapView")
 	public String mapPolyline(Model model, String path) {
 		try {
