@@ -1,4 +1,4 @@
-package com.kh.nuts.shopping;
+package com.kh.nuts.shoppingVO;
 
 
 

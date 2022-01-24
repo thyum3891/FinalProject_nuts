@@ -1,4 +1,4 @@
-package com.kh.nuts.shopping;
+package com.kh.nuts.shoppingVO;
 
 	// 네이버 검색 API 예제 - blog 검색
 	import java.io.*;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 	
-	public class Passing {
+	public class ShoppingParsing {
 
 
 	  
@@ -125,7 +125,10 @@ import java.util.Map;
 			}
 
 			for (int i = 0; i < jsonList.size(); i++) {
-
+				String productType = jsonList.get(i).get("productType");
+				if(!productType.equals("1")){
+					continue;
+				}
 				String title = jsonList.get(i).get("title");
 				String link = jsonList.get(i).get("link").replaceAll("gate.nhn\\?id\\=", "catalog/");
 				String image = jsonList.get(i).get("image");
@@ -133,7 +136,6 @@ import java.util.Map;
 				String hprice = jsonList.get(i).get("hprice");
 				String mallName = jsonList.get(i).get("mallName");
 				String productId = jsonList.get(i).get("productId");
-				String productType = jsonList.get(i).get("productType");
 				String maker = jsonList.get(i).get("maker");
 				String brand = jsonList.get(i).get("brand");
 				String category1 = jsonList.get(i).get("category1");
@@ -143,6 +145,7 @@ import java.util.Map;
 
 				ShoppingVO svo = new ShoppingVO(title, link, image, lprice, hprice, mallName, productId, productType, maker, brand, category1, category2, category3, category4);
 				System.out.println(svo);
+				
 				resultList.add(svo);
 			}
 			

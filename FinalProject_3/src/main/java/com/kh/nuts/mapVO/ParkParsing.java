@@ -9,32 +9,45 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import java.io.BufferedReader;
 
-public class ParkParssing {
-	String count = null;
-	int i = 1;
-	int num = 100;
+public class ParkParsing {
+	
 
-	public List<ParkVO> passing() {
+	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
+		try {
+			ParkParsing ps = new ParkParsing();
+			int count = ps.getTotalCount();
+
+			int num = 1000;
+			for(int i = 1;i*num<count;i++) {
+				ps.passing(i,num);
+			}
+			long end = System.currentTimeMillis();
+			System.out.println("수행시간: " + (end - start) + " ms");
+			System.out.println("끝");
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+
+	public List<ParkVO> passing(int page, int num) {
 		String parkJson = "";
 		try {
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://api.data.go.kr/openapi/tn_pubr_public_cty_park_info_api"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
 					+ "=p%2FEQ%2FM6%2F9VgLHa891Kr%2ByDbmX44MVfPjjcl%2Fa3%2BqCb0tT3sYqrfo0Gjlo950lOvzad9Tvm675fKPYsUq0dMPPQ%3D%3D");
-			urlBuilder.append(
-					"&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("i", "UTF-8")); 
-			urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
-					+ URLEncoder.encode("100", "UTF-8")); 
-			urlBuilder.append("&" + URLEncoder.encode("type", "UTF-8") + "="
-					+ URLEncoder.encode("json", "UTF-8")); 
+			urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("" + page, "UTF-8"));
+			urlBuilder
+					.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("" + num, "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
 			URL url = new URL(urlBuilder.toString());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-type", "application/json");
-			System.out.println("Response code: " + conn.getResponseCode());
 			BufferedReader rd;
 			if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -57,11 +70,7 @@ public class ParkParssing {
 		List<ParkVO> resultList = new ArrayList<ParkVO>();
 		String[] passingSplit = parkJson.split("\"items\":\\[");
 		passingSplit = passingSplit[1].split("\\}\\]");
-		if (count == null) {
-			String totalCount = passingSplit[1].split(",")[1];
-			totalCount = totalCount.split("\"totalCount\": \"")[1].replaceAll("\"", "");
-			count = totalCount;
-		}
+		
 		passingSplit = passingSplit[0].split("}");
 		for (int i = 0; i < passingSplit.length; i++) {
 			passingSplit[i] = passingSplit[i].replace(",{", "").replace("{", "");
@@ -109,10 +118,57 @@ public class ParkParssing {
 			String referenceDate = jsonList.get(i).get("referenceDate");
 			String insttCode = jsonList.get(i).get("insttCode");
 
-			ParkVO result = new ParkVO(manageNo, parkNm, rdnmadr, lnmadr, latitude, longitude, parkAr, mvmFclty, amsmtFclty, cnvnncFclty, cltrFclty, etcFclty, appnNtfcDate, institutionNm, phoneNumber, referenceDate, insttCode);
+			ParkVO result = new ParkVO(manageNo, parkNm, rdnmadr, lnmadr, latitude, longitude, parkAr, mvmFclty,
+					amsmtFclty, cnvnncFclty, cltrFclty, etcFclty, appnNtfcDate, institutionNm, phoneNumber,
+					referenceDate, insttCode);
 			resultList.add(result);
 		}
 		return resultList;
 
+	}
+
+	public int getTotalCount() {
+		String parkJson = "";
+		try {
+			StringBuilder urlBuilder = new StringBuilder(
+					"http://api.data.go.kr/openapi/tn_pubr_public_cty_park_info_api"); /* URL */
+			urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
+					+ "=p%2FEQ%2FM6%2F9VgLHa891Kr%2ByDbmX44MVfPjjcl%2Fa3%2BqCb0tT3sYqrfo0Gjlo950lOvzad9Tvm675fKPYsUq0dMPPQ%3D%3D");
+			urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+			urlBuilder
+					.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
+			URL url = new URL(urlBuilder.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+			System.out.println("Response code: " + conn.getResponseCode());
+			BufferedReader rd;
+			if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+				rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			} else {
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			StringBuilder sb = new StringBuilder();
+
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb.append(line);
+			}
+			rd.close();
+			conn.disconnect();
+			parkJson = sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		List<ParkVO> resultList = new ArrayList<ParkVO>();
+		String[] passingSplit = parkJson.split("\"items\":\\[");
+		passingSplit = passingSplit[1].split("\\}\\]");
+		
+			String totalCount = passingSplit[1].split(",")[1];
+			totalCount = totalCount.split("\"totalCount\": \"")[1].replaceAll("\"", "");
+			return Integer.parseInt(totalCount);
+		
 	}
 }
