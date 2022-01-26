@@ -107,20 +107,13 @@ public class ParkParsing {
 			String latitude = jsonList.get(i).get("latitude");
 			String longitude = jsonList.get(i).get("longitude");
 			String parkAr = jsonList.get(i).get("parkAr");
-			String mvmFclty = jsonList.get(i).get("mvmFclty");
-			String amsmtFclty = jsonList.get(i).get("amsmtFclty");
-			String cnvnncFclty = jsonList.get(i).get("cnvnncFclty");
-			String cltrFclty = jsonList.get(i).get("cltrFclty");
-			String etcFclty = jsonList.get(i).get("etcFclty");
 			String appnNtfcDate = jsonList.get(i).get("appnNtfcDate");
 			String institutionNm = jsonList.get(i).get("institutionNm");
 			String phoneNumber = jsonList.get(i).get("phoneNumber");
 			String referenceDate = jsonList.get(i).get("referenceDate");
 			String insttCode = jsonList.get(i).get("insttCode");
 
-			ParkVO result = new ParkVO(manageNo, parkNm, rdnmadr, lnmadr, latitude, longitude, parkAr, mvmFclty,
-					amsmtFclty, cnvnncFclty, cltrFclty, etcFclty, appnNtfcDate, institutionNm, phoneNumber,
-					referenceDate, insttCode);
+			ParkVO result = new ParkVO(manageNo, parkNm, lnmadr, rdnmadr, latitude, longitude, parkAr, institutionNm, phoneNumber, referenceDate, insttCode);
 			resultList.add(result);
 		}
 		return resultList;
