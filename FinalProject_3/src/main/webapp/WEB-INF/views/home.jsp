@@ -25,8 +25,11 @@
 </head>
 <body>
 <div id="map" style="width:100%;height:350px;"></div>
-<form action="${path}/mapView2">
-<input id="ajaxPath" name="path" type="text" hidden="hidden"  required>
+<form action="${path}/mapView">
+<input id="ajaxPathAll" name="pathAll" type="text" hidden="hidden"  required>
+<input id="ajaxPathOne" name="pathStart" type="text" hidden="hidden"  required>
+<input id="ajaxDistance" name="distance" type="text" hidden="hidden"  required>
+<input id="ajaxTime" name="time" type="text" hidden="hidden"  required>
 <input type="submit">  
 </form>
 <p>
@@ -194,7 +197,8 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
         
         // 마우스 클릭으로 그린 선의 좌표 배열을 얻어옵니다
         var path = clickLine.getPath();
-        $("#ajaxPath").val(path);
+        $("#ajaxPathAll").val(path);
+        $("#ajaxPathOne").val(path[0]);
         // 선을 구성하는 좌표의 개수가 2개 이상이면
         if (path.length > 1) {
 
@@ -206,9 +210,10 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
 
             var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
                 content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
-                
+                console.log(content);
+                console.log(path);
             // 그려진 선의 거리정보를 지도에 표시합니다
-            showDistance(content, path[path.length-1]);  
+                showDistance(content, path[path.length-1]);  
              
         } else {
 
@@ -217,7 +222,10 @@ kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
             deleteClickLine();
             deleteCircleDot(); 
             deleteDistnce();
-            $("#ajaxPath").val("");
+            $("#ajaxPathAll").val("");
+            $("#ajaxPathOne").val("");
+            $("#ajaxDistance").val("");
+            $("#ajaxTime").val("");
 
         }
         
@@ -322,6 +330,9 @@ function getTimeHTML(distance) {
     if (walkkTime > 60) {
         walkHour = '<span class="number">' + Math.floor(walkkTime / 60) + '</span>시간 '
     }
+    $("#ajaxDistance").val(distance);
+    $("#ajaxTime").val(Math.floor("" + walkkTime / 60) + walkkTime % 60);
+
     walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
 
  
@@ -334,7 +345,6 @@ function getTimeHTML(distance) {
     content += '    <li>';
     content += '        <span class="label">도보</span>' + walkHour + walkMin;
     content += '    </li>';
-
     content += '</ul>'
 
     return content;

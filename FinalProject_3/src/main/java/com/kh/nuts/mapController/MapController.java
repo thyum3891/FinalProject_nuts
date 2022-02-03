@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MapController {
 	@RequestMapping("/mapView")
-	public String mapPolyline(Model model, String path) {
+	public String mapPolyline(Model model, String pathAll, String pathStart, String distance, String time) {
 		try {
-			System.out.println(path);
+			System.out.println(pathAll);
+			System.out.println(pathStart);
+			System.out.println(distance);
+			System.out.println(time);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
