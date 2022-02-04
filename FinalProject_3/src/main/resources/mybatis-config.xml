@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<typeAliases>
+	
+		<typeAlias type="com.kh.nuts.member.vo.Member" alias="member"/>
+		<typeAlias type="com.kh.nuts.member.vo.Score" alias="score"/>
+		
+		<typeAlias type="com.kh.nuts.hotdog.vo.Hotdog" alias="hotdog"/>
+		<typeAlias type="com.kh.nuts.hotdog.vo.HotdogLike" alias="hotdogLike"/>
+		
+		<typeAlias type="com.kh.nuts.hospital.vo.Hospital" alias="hospital"/>
+		<typeAlias type="com.kh.nuts.hospital.vo.HospitalComment" alias="hospitalComment"/>
+		
+		<typeAlias type="com.kh.nuts.notice.vo.Notice" alias="notice"/>
+		
+		<typeAlias type="com.kh.nuts.park.vo.Park" alias="park"/>
+		<typeAlias type="com.kh.nuts.park.vo.ParkComment" alias="parkComment"/>
+		
+		<typeAlias type="com.kh.nuts.working.vo.WorkingCourse" alias="workingCourse"/>
+		<typeAlias type="com.kh.nuts.working.vo.WorkingParty" alias="workingParty"/>
+		<typeAlias type="com.kh.nuts.working.vo.WorkingRec" alias="workingRec"/>
+		<typeAlias type="com.kh.nuts.working.vo.WorkingRequest" alias="workingRequest"/>
+		
+		<typeAlias type="com.kh.mybatis.common.MemberTypeHandler" alias="memberHandler"/>
+		
+	</typeAliases>
+</configuration>

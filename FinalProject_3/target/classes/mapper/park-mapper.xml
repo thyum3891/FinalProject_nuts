@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- 실질적인 SQL이 들어가는 Mapper -->
+<mapper namespace="memberMapper">
+
+	<!-- typeHandler를 위해 멤버 맵핑 선언 -->
+	<resultMap type="member" id="memberMap">
+		<result property="id" column="id"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="age" column="age"/>
+		<result property="gender" column="gender"/>
+		<result property="phone" column="phone"/>
+		<result property="address" column="address"/>
+		<result property="email" column="email"/>
+		<result property="hobby" column="hobby" typeHandler="memberHandler" />
+		<result property="enrollDate" column="enrollDate"/>
+	</resultMap>
+	
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER VALUES(
+			#{id},#{password},#{name},#{age},#{gender},
+			#{phone},#{address},#{email},
+			#{hobby, typeHandler = memberHandler}, default)
+	</insert>
+	
+	<select id="selectMemberAll" resultMap="memberMap">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="selectMemberById" parameterType="string" resultMap="memberMap">
+		SELECT * FROM MEMBER WHERE ID = #{id}
+	</select>
+
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM MEMBER WHERE ID = #{id}
+	</delete>	
+
+</mapper>
