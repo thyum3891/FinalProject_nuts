@@ -1,5 +1,5 @@
 package com.kh.nuts.working.dao;
 
-public class WorkingDaoImpl {
-
+public class WorkingDaoImpl implements WorkingDao{
+	
 }

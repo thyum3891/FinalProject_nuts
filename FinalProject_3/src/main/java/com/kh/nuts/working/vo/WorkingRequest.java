@@ -18,5 +18,6 @@ public class WorkingRequest {
 	String stat;              //상태   
 	String respone_id;        //받는 사람
 	String request_id;        //신청자  
+	String party_no;		  //모임번호
                                    
 }
