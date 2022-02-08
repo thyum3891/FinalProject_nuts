@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 실질적인 SQL이 들어가는 Mapper -->
+<mapper namespace="com.kh.nuts.walking.mapper.WalkingMapper">
+
+
+	
+	<insert id="insertWalkingParty" parameterType="WalkingParty">
+		INSERT INTO WORKING_PARTY VALUES(
+			 SEQ_WORKING_PARTY_NO.NEXTVAL,#{writer_id},#{pathOne},#{pathAll},#{contant},
+			DEFAULT,#{start_date},
+			#{start_time},#{estimated_time},#{distance},
+			DEFAULT)
+	</insert>
+	
+	<select id="selectWalkingPartyAll" >
+		SELECT * FROM WORKING_PARTY WHERE (STAT = '모집중') OR (STAT = '마감');
+	</select>
+	
+	<select id="selectWalkingPartySearch" parameterType="string">
+		SELECT * FROM WORKING_PARTY WHERE (START_DATE BETWEEN TO_DATE(#{searchDate}) AND TO_DATE(#{searchDate}+0.99999)AND WRITER_ID = #{writer_id}
+	</select>
+
+	<delete id="deleteWalkingParty" parameterType="_int">
+		DELETE FROM WORKING_PARTY WHERE PARTY_NO = #{party_no}
+	</delete>
+	
+	
+
+</mapper>
