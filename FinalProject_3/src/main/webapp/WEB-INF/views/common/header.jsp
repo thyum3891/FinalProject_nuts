@@ -45,6 +45,9 @@
 
     <!-- Fontawesome -->
     <link type="text/css" href="${path}/resources/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <!-- Leaflet JS -->
     <link type="text/css" href="${path}/resources/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
@@ -60,11 +63,16 @@
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
+<style type="text/css">
+	body {
+	font-family: 'Jua';
+}
+</style>
 </head>
 
 <body>
     <header class="header-global">
-        <nav id="navbar-main" class="navbar navbar-main navbar-theme-primary navbar-expand-lg headroom py-lg-3 px-lg-6 navbar-light navbar-theme-primary navbar-transparent">
+        <nav id="navbar-main" class="navbar navbar-main navbar-expand py-lg-3 px-lg-6 navbar-light navbar-transparent">
             <div class="container">
                 <a class="logo" href="nuts_index.html">
                     <img class="logo" src="${path}/resources/images/nutslogo.svg" height="100px" alt="Logo light">
@@ -121,9 +129,6 @@
 
     <!-- NoUISlider -->
     <script src="${path}/resources/vendor/nouislider/distribute/nouislider.min.js"></script>
-
-    <!-- Bootstrap Datepicker -->
-    <script src="${path}/resources/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 
     <!-- jQuery Waypoints -->
     <script src="${path}/resources/vendor/waypoints/lib/jquery.waypoints.min.js"></script>

@@ -6,25 +6,37 @@
 <!-- 실질적인 SQL이 들어가는 Mapper -->
 <mapper namespace="com.kh.nuts.walking.mapper.WalkingMapper">
 
-
+<resultMap type="WalkingParty" id="walkingPartyMap">
+		<result property="party_no" column="party_no"/>
+		<result property="writer_id" column="writer_id"/>
+		<result property="pathOne" column="pathOne"/>
+		<result property="pathAll" column="pathAll" typeHandler="WalkingTypeHandler" />
+		<result property="contant" column="contant"/>
+		<result property="creat_date" column="creat_date"/>
+		<result property="start_date" column="start_date"/>
+		<result property="start_time" column="start_time"/>
+		<result property="estimated_time" column="estimated_time"/>
+		<result property="distance" column="distance"/>
+		<result property="stat" column="stat"/>
+</resultMap>
 	
 	<insert id="insertWalkingParty" parameterType="WalkingParty">
 		INSERT INTO WORKING_PARTY VALUES(
-			 SEQ_WORKING_PARTY_NO.NEXTVAL,#{writer_id},#{pathOne},#{pathAll},#{contant},
+			 SEQ_WORKING_PARTY_NO.NEXTVAL,#{writer_id},#{pathOne},#{pathAll, typeHandler = WalkingTypeHandler},#{contant},
 			DEFAULT,#{start_date},
 			#{start_time},#{estimated_time},#{distance},
 			DEFAULT)
 	</insert>
 	
-	<select id="selectWalkingPartyAll" >
+	<select id="selectWalkingPartyAll" resultMap="walkingPartyMap">
 		SELECT * FROM WORKING_PARTY WHERE (STAT = '모집중') OR (STAT = '마감');
 	</select>
 	
-	<select id="selectWalkingPartySearch" parameterType="string">
-		SELECT * FROM WORKING_PARTY WHERE (START_DATE BETWEEN TO_DATE(#{searchDate}) AND TO_DATE(#{searchDate}+0.99999)AND WRITER_ID = #{writer_id}
+	<select id="selectWalkingPartySearch" parameterType="string" resultMap="walkingPartyMap" >
+		SELECT * FROM WORKING_PARTY WHERE (START_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+0.99999)AND WRITER_ID LIKE #{id} AND (STAT = '모집중') OR (STAT = '마감') ORDER BY start_time
 	</select>
 
-	<delete id="deleteWalkingParty" parameterType="_int">
+	<delete id="deleteWalkingParty" parameterType="_int" >
 		DELETE FROM WORKING_PARTY WHERE PARTY_NO = #{party_no}
 	</delete>
 	

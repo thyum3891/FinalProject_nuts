@@ -7,18 +7,18 @@
 	<!-- typeHandler를 위해 멤버 맵핑 선언 -->
 
 	
-	<insert id="insertMember" parameterType="member">
+	<insert id="insertMember" >
 		INSERT INTO MEMBER VALUES(
 			#{id},#{password},#{name},#{age},#{gender},
 			#{phone},#{address},#{email},
 		)
 	</insert>
 	
-	<select id="selectMemberAll" resultMap="memberMap">
+	<select id="selectMemberAll" >
 		SELECT * FROM MEMBER
 	</select>
 	
-	<select id="selectMemberById" parameterType="string" resultMap="memberMap">
+	<select id="selectMemberById" parameterType="string" >
 		SELECT * FROM MEMBER WHERE ID = #{id}
 	</select>
 

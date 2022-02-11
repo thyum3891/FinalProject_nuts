@@ -16,13 +16,17 @@
 		p:username="${db.username}"
 		p:password="${db.password}"	
 	/>
-	<bean id="mybatisConfig" class="org.apache.ibatis.session.Configuration" p:jdbcTypeForNull="NULL"/>
+	<bean id="mybatisConfig" class="org.apache.ibatis.session.Configuration" p:jdbcTypeForNull="NULL">
+	
+	</bean>
 	
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
 		p:configuration-ref="mybatisConfig"
 		p:mapperLocations="classpath:mapper/*.xml"
 		p:typeAliasesPackage="com.kh.nuts.*.vo"
+		p:typeAliases="com.kh.mybatis.common.walkingTypeHandler"
+		p:typeHandlersPackage="com.kh.mybatis.common.*"
 		p:dataSource-ref="dataSource"
 	/>
 	<!-- 실제 마이바티스에서 사용할 Session 정의 -->

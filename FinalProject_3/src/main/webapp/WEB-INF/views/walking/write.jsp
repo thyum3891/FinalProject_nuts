@@ -36,7 +36,7 @@
 <input type="submit">  
 </form>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1e1bfb910a320b22f190e3d2881cdce7"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffea6673691d899c7b831444d7cf6ba1"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 var LatLngJs = '';

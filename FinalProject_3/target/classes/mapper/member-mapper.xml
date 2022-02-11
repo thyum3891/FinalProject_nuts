@@ -14,11 +14,11 @@
 			)
 	</insert>
 	
-	<select id="selectMemberAll" resultMap="memberMap">
+	<select id="selectMemberAll" >
 		SELECT * FROM MEMBER
 	</select>
 	
-	<select id="selectMemberById" parameterType="string" resultMap="memberMap">
+	<select id="selectMemberById" parameterType="string">
 		SELECT * FROM MEMBER WHERE ID = #{id}
 	</select>
 

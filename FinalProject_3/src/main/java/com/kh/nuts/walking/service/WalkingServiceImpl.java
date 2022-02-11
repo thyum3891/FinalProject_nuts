@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.nuts.walking.mapper.WalkingMapper;
-import com.kh.nuts.working.vo.WalkingParty;
+import com.kh.nuts.walking.vo.WalkingParty;
 
 
 @Service
@@ -39,21 +39,21 @@ public class WalkingServiceImpl implements WalkingService {
 	}
 
 	@Override
-	public List<WalkingParty> selectSearch(double lat, double lng, String searchDate, String writer_id) {
+	public List<WalkingParty> selectSearch(String lat, String lng, String searchDate, String writer_id) {
 
-		List<WalkingParty> list = mapper.selectWalkingPartySearch(searchDate, writer_id);
+		List<WalkingParty> list = mapper.selectWalkingPartySearch(searchDate, "%"+writer_id+"%");
 
 		list.sort(new Comparator<WalkingParty>() {
 
 			@Override
 			public int compare(WalkingParty o1, WalkingParty o2) {
-				String[] o1Path = o1.getPathOne().split(",");
-				String[] o2Path = o2.getPathOne().split(",");
+				String[] o1Path = o1.getPathOne().replaceAll("\\(", "").replaceAll("\\)", "").split(",");
+				String[] o2Path = o2.getPathOne().replaceAll("\\(", "").replaceAll("\\)", "").split(",");
 
-				int result = (int) distance(lat, lng, Double.parseDouble(o1Path[0].trim()),
-						Double.parseDouble(o1Path[1].trim()))
-						- (int) distance(lat, lng, Double.parseDouble(o2Path[0].trim()),
-								Double.parseDouble(o2Path[1].trim()));
+				int result = (int) Math.round(distance(Double.parseDouble(lat), Double.parseDouble(lng), Double.parseDouble(o1Path[0].trim()),
+						Double.parseDouble(o1Path[1].trim()))) 
+						- (int) Math.round(distance(Double.parseDouble(lat), Double.parseDouble(lng), Double.parseDouble(o2Path[0].trim()),
+								Double.parseDouble(o2Path[1].trim()))); 
 				return result;
 			}
 		});
