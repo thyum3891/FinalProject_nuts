@@ -89,8 +89,8 @@ List<WalkingParty> wpList = (List<WalkingParty>) request.getAttribute("wpList");
 							<%
 							for (int i = 0; i < wpList.size(); i++) {
 								WalkingParty wp = wpList.get(i);
-								List<String> pathList = new ArrayList<String>(Arrays.asList(
-								wp.getPathAll().replaceAll("\\)\\,\\(", "\\/").replaceAll("\\(", "").replaceAll("\\)", "").split("\\/")));
+								//List<String> pathList = new ArrayList<String>(Arrays.asList(
+								//wp.getPathAll().replaceAll("\\)\\,\\(", "\\/").replaceAll("\\(", "").replaceAll("\\)", "").split("\\/")));
 							%>
 							<tr>
 								<td>
