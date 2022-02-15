@@ -25,5 +25,7 @@ public class WalkingParty {
 	String estimated_time; // 예상 소요 시간
 	String distance; // 거리
 	String stat; // 상태
+	String nick_name; // 상태
+	double avg; // 상태
 
 }

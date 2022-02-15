@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.nuts.walking.mapper.WalkingMapper;
 import com.kh.nuts.walking.vo.WalkingParty;
+import com.kh.nuts.walking.vo.WalkingRequest;
 
 
 @Service
@@ -17,20 +18,20 @@ public class WalkingServiceImpl implements WalkingService {
 	private WalkingMapper mapper;
 
 	@Override
-	public List<WalkingParty> selectAll(double lat, double lng) {
-		List<WalkingParty> list = mapper.selectWalkingPartyAll();
+	public List<WalkingParty> selectAll(String lat, String lng, String id) {
+		List<WalkingParty> list = mapper.selectWalkingPartyAll(id);
 
 		list.sort(new Comparator<WalkingParty>() {
 
 			@Override
 			public int compare(WalkingParty o1, WalkingParty o2) {
-				String[] o1Path = o1.getPathOne().split(",");
-				String[] o2Path = o2.getPathOne().split(",");
+				String[] o1Path = o1.getPathOne().replaceAll("\\(", "").replaceAll("\\)", "").split(",");
+				String[] o2Path = o2.getPathOne().replaceAll("\\(", "").replaceAll("\\)", "").split(",");
 
-				int result = (int) distance(lat, lng, Double.parseDouble(o1Path[0].trim()),
-						Double.parseDouble(o1Path[1].trim()))
-						- (int) distance(lat, lng, Double.parseDouble(o2Path[0].trim()),
-								Double.parseDouble(o2Path[1].trim()));
+				int result = (int) Math.round(distance(Double.parseDouble(lat), Double.parseDouble(lng), Double.parseDouble(o1Path[0].trim()),
+						Double.parseDouble(o1Path[1].trim()))) 
+						- (int) Math.round(distance(Double.parseDouble(lat), Double.parseDouble(lng), Double.parseDouble(o2Path[0].trim()),
+								Double.parseDouble(o2Path[1].trim()))); 
 				return result;
 			}
 		});
@@ -93,4 +94,30 @@ public class WalkingServiceImpl implements WalkingService {
 		return (rad * 180 / Math.PI);
 	}
 
+	@Override
+	public boolean insertWalkingReq(String party_no, String reqId, String respId) {
+		String req_no = party_no + reqId;
+		
+		int result = mapper.insertWalkingReq(req_no,party_no, reqId, respId);
+		
+		if (result > 0) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	@Override
+	public String selectReqNo() {
+		String reqStr = mapper.selectReqNo().toString();
+		return reqStr;
+	}
+
+	@Override
+	public List<WalkingRequest> selectWalkingReq() {
+		return mapper.selectWalkingReq();
+	}
+
+	
 }

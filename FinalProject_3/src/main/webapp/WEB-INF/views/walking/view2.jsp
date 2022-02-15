@@ -4,255 +4,87 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
-
-<!DOCTYPE html>
-
-<html>
-
-<head>
-
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffea6673691d899c7b831444d7cf6ba1&libraries=services"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<c:set var = "testId" value="test2"/>
 
 
-<!-- Fontawesome -->
-<link type="text/css"
-	href="${path}/resources/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
 
-<!-- Leaflet JS -->
-<link type="text/css"
-	href="${path}/resources/vendor/leaflet/dist/leaflet.css"
-	rel="stylesheet">
+<div class="section section-lg pt-0">
+	<div class="container mt-n10 ">
+		<div class="flex-container">
+			<img src="${path}/resources/images/caret-up-fill.svg" width="50px"
+				alt="" onclick="scrollUp()" style="cursor: pointer;"
+				class="scrollBtn"> <img
+				src="${path}/resources/images/caret-down-fill.svg" width="50px"
+				alt="" onclick="scrollDown()" style="cursor: pointer;"
+				class="scrollBtn">
 
-<!-- Fancybox -->
-<link rel="stylesheet"
-	href="${path}/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
-
-<!-- VectorMap -->
-<link rel="stylesheet"
-	href="${path}/resources/vendor/jqvmap/dist/jqvmap.min.css">
-
-<!-- Main CSS -->
-<link type="text/css" href="${path}/resources/css/spaces.css"
-	rel="stylesheet">
-
-<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-<style type="text/css">
-.mapcard {
-	width: 100%;
-	-webkit-tap-highlight-color: transparent;
-	/* position relative and z-index fix webkit rendering fonts issue */
-	position: block;
-	z-index: auto;
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
-	content: ".";
-}
-
-.flex-container {
-	display: flex;
-	justify-content: center;
-}
-
-body, .fontJua {
-	font-family: 'Jua';
-}
-
-.btn1 {
-	color: white;
-	background-color: #BA9F81;
-	border-color: #BA9F81;
-	height: 55px;
-}
-
-.btn2 {
-	color: white;
-	background-color: #5E4D44;
-	border-color: #5E4D44;
-	height: 55px;
-}
-
-.btn1:hover {
-	color: black;
-	background-color: white;
-	border-color: #BA9F81;
-	height: 55px;
-}
-
-.btn2:hover {
-	color: black;
-	background-color: white;
-	border-color: #5E4D44;
-	height: 55px;
-}
-</style>
-</head>
-
-<body>
-
-	<main>
-
-		<div
-			class="preloader bg-dark flex-column justify-content-center align-items-center">
-			<div class="position-relative">
-				<img
-					src="${path}/resources/assets/img/brand/light-without-letter.svg"
-					alt="Logo loader"> <img
-					src="${path}/resources/assets/img/brand/letter.svg"
-					class="rotate-letter" alt="Letter loader">
-			</div>
 		</div>
 
-		<!-- Hero -->
-		<section class="section section-header pb-11"
-			style="background-color: rgb(253, 225, 148);">
-			<div class="container">
-				<div class="row justify-content-between align-items-center">
-					<div
-						class="col-12 col-md-5 order-lg-1 card ml-6 px-lg-5 py-5 border border-light shadow-sm">
-						<h1 class="display-3 lh-100 font-weight-bold mb-0">산책모임 찾기</h1>
-						<p class="lead my-4">
-							반려견이 새로운 친구와 함께 산책하며 <span class="font-weight-bold">사회성</span>을
-							기르는 <span class="font-weight-bold">산책 모임</span>을 가져보세요!
-						</p>
-						<form autocomplete="off" class="row" method="get"
-							action="${path}/walking/view2">
-							<div class="col-12 mb-3 mb-lg-4">
-								<div class="form-group form-group-lg mb-0">
-									<div class="input-group">
-										<div class="input-group-prepend">
-											<span class="input-group-text"><span
-												class="fas fa-map-marker-alt"></span></span>
-										</div>
-										<input id="search-location" type="text" name="writerName"
-											class="form-control autocomplete" placeholder="닉네임" required>
+
+		<div class="row">
+			<div class="col-md-12 ">
+				<div id="listScroll" class="row overflow-hidden"
+					style="height: 665px;">
+					<c:if test="${wpList == null}">
+	검색결과가 없습니다.
+</c:if>
+					<c:forEach var="wp" items="${wpList}" varStatus="vs">
+						<!-- Item 1 -->
+						<div style="width: 363px; height: 658px; margin: 5px;" >
+							<!-- Card -->
+							<div class="card border-light mb-4 animate-up-5">
+								<table>
+									<tr>
+										<td>
+											<div class="position-relative card p-2 rounded-xl">
+												<div id="pathMap${wp.party_no}"
+													style="width: 340px; height: 260px; overflow: hidden;cursor: pointer;" onclick="moveMap(new kakao.maps.LatLng${wp.pathOne})" disabled = "disabled">
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+								<div class="card-body ">
+									<a href="./single-space.html">
+										<h4 class="h5 fontJua">
+											<span><img
+												src="${path}/resources/images/KakaoTalk_20220125_140624405.jpg"
+												class="card-img-top rounded-circle border-white"
+												style="height: 50px; width: 50px;" alt=""></span>${wp.nick_name}
+										</h4>
+									</a>
+									<div class="d-flex my-4">
+										<c:forEach begin="1" end="${wp.avg/1}">
+											<span class="star fas fa-star text-warning"></span>
+										</c:forEach>
+
+										<c:if test="${(wp.avg/0.5)%2 >= 1}">
+											<span class="fas fa-star-half text-warning"></span>
+										</c:if>
+
+										<span class="badge badge-pill badge-primary ml-2">${wp.avg}</span>
+									</div>
+									<ul class="list-group mb-3  ">
+										<li id="detailAddr${wp.party_no }"
+											class="list-group-item small p-0 fontJua"><span
+											class="fas fa-map-marker-alt mr-2 fontJua"></span>좌표로 주소값 구하기</li>
+										<li class="list-group-item small p-0 fontJua"><span
+											class="fas fa-bullseye mr-2"></span>시작 시간 : ${wp.start_time }</li>
+										<li class="list-group-item small p-0 fontJua"><span
+											class="fas fa-bullseye mr-2"></span>거리 : ${wp.distance}</li>
+										<li class="list-group-item small p-0 fontJua"><span
+											class="fas fa-bullseye mr-2"></span>예상 소요 시간 :
+											${wp.estimated_time}</li>
+										<li class="list-group-item small p-0"></li>
+										<li class="list-group-item small p-0" fontJua><br>${wp.contant}</li>
+									</ul>
+									<div class="col-12 mt-4">
+										<button id="btn${wp.party_no}" class="btn btn-lg btn2 btn-block" type="button" 
+										onclick="partyReq('btn${wp.party_no}','${wp.party_no}', 'test2', '${wp.writer_id}')">신청</button>
 									</div>
 								</div>
 							</div>
-							<div class="col-12 mb-3 mb-lg-4">
-								<div class="input-group input-group-lg">
-									<div class="input-group-prepend">
-										<span class="input-group-text"><span
-											class="far fa-calendar-alt"></span></span>
-									</div>
-									<input class="form-control datepicker col-auto"
-										name="searchDate" placeholder="날짜" type="text" required>
-								</div>
-							</div>
-
-							<div class="row col-12 mt-4 btn-group-toggle">
-								<button class="btn btn-lg  btn-block animate-up-2 btn1"
-									type="submit">검색하기</button>
-
-								<button class="btn btn-lg  btn-block animate-up-2 btn2"
-									type="button" onclick="location.href(${path}/walking/write)">생성하기</button>
-
-							</div>
-						</form>
-					</div>
-					<div class="col-auto order-lg-2">
-						<!-- Image -->
-
-						<div id="mapAll" class="rounded border-light shadow-sm"
-							style="width: 500px; height: 500px; margin: 5px"></div>
-
-					</div>
-				</div>
-			</div>
-
-
-
-
-		</section>
-		<div class="section section-lg pt-0">
-			<div class="container mt-n10 ">
-				<div class="flex-container">
-					<img src="${path}/resources/images/caret-up-fill.svg" width="50px"
-						alt="" onclick="scrollUp()" style="cursor: pointer;"
-						class="scrollBtn"> <img
-						src="${path}/resources/images/caret-down-fill.svg" width="50px"
-						alt="" onclick="scrollDown()" style="cursor: pointer;"
-						class="scrollBtn">
-
-				</div>
-
-
-				<div class="row">
-					<div class="col-md-12 ">
-						<div id="listScroll" class="row overflow-hidden"
-							style="height: 665px;">
-							<c:forEach var="wp" items="${wpList}" varStatus="vs">
-								<!-- Item 1 -->
-								<div style="width: 363px; height: 658px; margin: 5px">
-									<!-- Card -->
-									<div class="card border-light mb-4 animate-up-5">
-
-										<table>
-											<tr>
-												<td>
-													<div class="position-relative card p-2 rounded-xl">
-														<div id="pathMap${wp.party_no}"
-															style="width: 340px; height: 260px; overflow: hidden;">
-														</div>
-													</div>
-												</td>
-											</tr>
-
-										</table>
-
-
-										<div class="card-body ">
-											<a href="./single-space.html">
-												<h4 class="h5 fontJua">
-													<span><img
-														src="${path}/resources/images/KakaoTalk_20220125_140624405.jpg"
-														class="card-img-top rounded-circle border-white"
-														style="height: 50px; width: 50px;" alt=""></span>귀여운 동훈이
-												</h4>
-											</a>
-											<div class="d-flex my-4">
-												<span class="star fas fa-star text-warning"></span> <span
-													class="star fas fa-star text-warning"></span> <span
-													class="star fas fa-star text-warning"></span> <span
-													class="star fas fa-star text-warning"></span> <span
-													class="star fas fa-star text-warning"></span> <span
-													class="badge badge-pill badge-primary ml-2">5.0</span>
-											</div>
-											<ul class="list-group mb-3  ">
-												<li id="detailAddr${wp.party_no }"
-													class="list-group-item small p-0 fontJua"><span
-													class="fas fa-map-marker-alt mr-2 fontJua"></span>좌표로 주소값
-													구하기</li>
-												<li class="list-group-item small p-0 fontJua"><span
-													class="fas fa-bullseye mr-2"></span>시작 시간 : ${wp.start_time }</li>
-												<li class="list-group-item small p-0 fontJua"><span
-													class="fas fa-bullseye mr-2"></span>거리 : ${wp.distance}</li>
-												<li class="list-group-item small p-0 fontJua"><span
-													class="fas fa-bullseye mr-2"></span>예상 소요 시간 :
-													${wp.estimated_time}</li>
-												<li class="list-group-item small p-0"></li>
-												<li class="list-group-item small p-0" fontJua><br>${wp.contant}</li>
-											</ul>
-											<div class="col-12 mt-4">
-												<button class="btn btn-lg btn2 btn-block" type="submit">신청</button>
-											</div>
-										</div>
-
-									</div>
-
-									<script>
+							<script>
 							detailAddr(new kakao.maps.LatLng${wp.pathOne});
 								var linePath${wp.party_no} = [
 									<c:forEach var="item"  items="${wp.pathAll}" varStatus="status">
@@ -295,7 +127,6 @@ body, .fontJua {
 								function detailAddr(latLng){
 							    searchDetailAddrFromCoords(latLng, function(result, status) {
 							        if (status === kakao.maps.services.Status.OK) {
-							        	console.log(result[0].address.address_name);
 							        	
 							        	$("#detailAddr${wp.party_no}").html('<span class="fas fa-map-marker-alt mr-2"></span>모임주소 : ' + result[0].address.address_name);
 							        	}   
@@ -306,111 +137,28 @@ body, .fontJua {
 								    var geocoder = new kakao.maps.services.Geocoder();
 								    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
 								}
-								
 							</script>
-								</div>
-
-								<!-- End of Card -->
-
-
-								<!-- End of Card -->
-
-							</c:forEach>
 						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-
-	</main>
-
-	<hr>
-	<footer class="footer pb-5 text-black pt-9 mt-n9">
-		<div class="container">
-			<div class="row mt-6">
-				<div class="col-xl-3 mb-3 mb-xl-0">
-					<img src="${path}/resources/assets/img/brand/light.svg" height="30"
-						class="mb-3" alt="Spaces logo">
-					<p>Premium Bootstrap Directory Listing Template</p>
-				</div>
-				<div class="col-6 col-xl-2 mb-5 mb-xl-0">
-					<span class="h5">Themesberg</span>
-					<ul class="footer-links mt-2">
-						<li><a target="_blank" href="https://themesberg.com/blog">Blog</a></li>
-						<li><a target="_blank" href="https://themesberg.com/products">Products</a></li>
-						<li><a target="_blank" href="https://themesberg.com/about">About
-								Us</a></li>
-						<li><a target="_blank" href="https://themesberg.com/contact">Contact
-								Us</a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-xl-3 mb-5 mb-xl-0">
-					<span class="h5">Other</span>
-					<ul class="footer-links mt-2">
-						<li><a
-							href="https://themesberg.com/docs/spaces/getting-started/quickstart/">Documentation
-								<span class="badge badge-sm badge-secondary ml-2">v3.0</span>
-						</a></li>
-						<li><a
-							href="https://themesberg.com/docs/spaces/getting-started/changelog/">Changelog</a></li>
-						<li><a target="_blank" href="https://themesberg.com/contact">Support</a></li>
-						<li><a target="_blank"
-							href="https://themesberg.com/licensing">License</a></li>
-					</ul>
-				</div>
-				<div class="col-12 col-xl-4 mb-5 mb-xl-0">
-					<span class="h5">Get the app</span>
-					<p class="text-muted font-small mt-2">It's easy. Just select
-						your device.</p>
-					<button class="btn btn-sm btn-white mb-xl-0 mr-2 mr-lg-2">
-						<span class="d-flex align-items-center"> <span
-							class="icon icon-brand mr-2"><span class="fab fa-apple"></span></span>
-							<span class="d-inline-block text-left"> <small
-								class="font-weight-normal d-block">Available on</small> App
-								Store
-						</span>
-						</span>
-					</button>
-					<button class="btn btn-sm btn-white">
-						<span class="icon icon-brand mr-2"><span
-							class="fab fa-google-play"></span></span> <span
-							class="d-inline-block text-left"> <small
-							class="font-weight-normal d-block">Available on</small> Google
-							Play
-						</span>
-					</button>
-				</div>
-			</div>
-			<hr class="my-3 my-lg-5">
-			<div class="row">
-				<div class="col mb-md-0">
-					<a href="https://themesberg.com" target="_blank" 
-						class="d-flex justify-content-center"> <img
-						src="${path}/resources/assets/img/themesberg.svg" height="25"
-						class="mb-3" alt="Themesberg Logo">
-					</a>
-					<div
-						class="d-flex text-center justify-content-center align-items-center"
-						role="contentinfo">
-						<p class="font-weight-normal font-small mb-0">
-							Copyright © Themesberg <span class="current-year">2020</span>.
-							All rights reserved.
-						</p>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
-	</footer>
-	<input type="text" id="myLat" name="lng">
-	<input type="text" id="myLng" name="lon" >
 
-	<script type="text/javascript">
+	</div>
+</div>
+
+</main>
+
+
+<input type="text" id="myLat" name="lng" hidden>
+<input type="text" id="myLng" name="lon" hidden>
+
+<script type="text/javascript">
 
 var mapContainer = document.getElementById('mapAll'), // 지도를 표시할 div  
 mapOption = { 
     center: new kakao.maps.LatLng(${myLat}, ${myLng}), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
+    level: 6// 지도의 확대 레벨
 };
  
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -451,19 +199,19 @@ kakao.maps.event.addListener(marker${wp.party_no}, 'mouseout', function() {
 	polyline${wp.party_no}.setMap(null);
 });
 
-var content${wp.party_no} = '<div class="card card-body"  style="position:relative; width: 300px; height: 220px; background-color: white ;no-repeat">'+
+var content${wp.party_no} = '<div class="bubble" >'+
 	'<div class="row">'+
 	'    <img src="${path}/resources/images/KakaoTalk_20220125_140624405.jpg" style="width: 70px; height: 70px;">'+
 	'    <div class="ml-3 mt-2">'+
-	'        <h5 style="color: #BA9F81;">${wp.writer_id}</h5>'+
+	'        <h5 style="color: #BA9F81;">${wp.nick_name}</h5>'+
 	'        <div class="row ml-0">'+
 	'            <svg style="color: #5E4D44;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-through-heart-fill" viewBox="0 0 16 16">                                                                                                                                                                                                                                                                                                                                                                                                                                                                       '+
 	'                <path fill-rule="evenodd" d="M2.854 15.854A.5.5 0 0 1 2 15.5V14H.5a.5.5 0 0 1-.354-.854l1.5-1.5A.5.5 0 0 1 2 11.5h1.793l3.103-3.104a.5.5 0 1 1 .708.708L4.5 12.207V14a.5.5 0 0 1-.146.354l-1.5 1.5ZM16 3.5a.5.5 0 0 1-.854.354L14 2.707l-1.006 1.006c.236.248.44.531.6.845.562 1.096.585 2.517-.213 4.092-.793 1.563-2.395 3.288-5.105 5.08L8 13.912l-.276-.182A23.825 23.825 0 0 1 5.8 12.323L8.31 9.81a1.5 1.5 0 0 0-2.122-2.122L3.657 10.22a8.827 8.827 0 0 1-1.039-1.57c-.798-1.576-.775-2.997-.213-4.093C3.426 2.565 6.18 1.809 8 3.233c1.25-.98 2.944-.928 4.212-.152L13.292 2 12.147.854A.5.5 0 0 1 12.5 0h3a.5.5 0 0 1 .5.5v3Z"/>'+
 	'            </svg>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       '+
-	'            <h6 class="font-small text-surroundAir mt-1 ml-1" style="color: #BA9F81;">인기도 5.0</h6>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    '+
+	'            <h6 class="font-small text-surroundAir mt-1 ml-1" style="color: #BA9F81;">인기도 : ${wp.avg}</h6>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    '+
 	'        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '+
 	'    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '+
-	'    <button class="btn btn-primary animate-up-2 ml-4 mt-3" type="submit" style="background-color: #5E4D44; border-color: #5E4D44; height: 40px;">신청</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '+
+	<!--'    <button class="btn btn-primary animate-up-2 ml-4 mt-3" type="button" onclick="partyReq(\'${wp.party_no}\', \'test2\', \'${wp.writer_id}\')" style="background-color: #5E4D44; border-color: #5E4D44; height: 40px;">신청</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '+ -->
 	'</div>'+
 	'<div style="position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;cursor: pointer;" onclick="closeOverlay${wp.party_no}()" >x</div>'+
 	'<div class="text-surroundAir mt-2 ml-2" style="color: #5E4D44;">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         '+
@@ -502,8 +250,8 @@ var overlay${wp.party_no} = new kakao.maps.CustomOverlay({
 content: content${wp.party_no},
 map: map,
 position: marker${wp.party_no}.getPosition(),
-xAnchor: 0.7,
-yAnchor: 1.2
+xAnchor: 0.5,
+yAnchor: 1.15
 });
 overlay${wp.party_no}.setMap(null);
 
@@ -517,6 +265,9 @@ function closeOverlay${wp.party_no}() {
 	overlay${wp.party_no}.setMap(null);     
 }
 
+
+var reqNo = '${wp.party_no}'+'${testId}';
+reqFunction('btn${wp.party_no}', reqNo);
 </c:forEach>
 
 
@@ -526,7 +277,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         lon = position.coords.longitude;
     
     $("#myLat").val(lat);
-    $("#myLon").val(lon);
+    $("#myLng").val(lon);
 });
 
 
@@ -555,85 +306,57 @@ function scrollDown(){
         scrollTop : $("#listScroll")[0].scrollHeight
     }, 400 );
     }
+
+    
 }
+$("#myLat").val("${myLat}");
+$("#myLng").val("${myLon}");
+$("#date").val("${date}");
+$("#nickName").val("${nickName}");
+
+function moveMap(mapCenterPath) {
+	map.setCenter(mapCenterPath)
+}
+
+function partyReq(btnId, partyNo, reqId, respId) {
+	$.ajax({
+		type: "post",
+		url: "${path}/walking/partyReq",
+		dataType: "json",
+		data: {
+			partyNo, reqId, respId
+		},
+		success: 
+		function(data) {
+			console.log(data);
+			
+			if(data.creatStat === true) {
+	const btnIdDoc = document.getElementById(btnId);
+	
+		btnIdDoc.disabled = true;	
+		btnIdDoc.innerText = "신청완료";	
+				
+				alert("신청 완료");
+			} else {
+				alert("신청 실패");							
+			}
+		},
+		error: function(e) {
+			console.log(e);
+		}
+	});
+}
+function reqFunction(btnId, reqNo){
+	
+	const btnIdDoc = document.getElementById(btnId);
+	
+	if('${reqStr}'.indexOf(reqNo) >= 0){
+		btnIdDoc.disabled = true;	
+		btnIdDoc.innerText = "신청완료";	
+	}else{
+		
+	}
+	
+}
+
 </script>
-	<script src="${path}/resources/vendor/jquery/dist/jquery.min.js"></script>
-	<script src="${path}/resources/vendor/popper.js/dist/umd/popper.min.js"></script>
-	<script
-		src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="${path}/resources/vendor/headroom.js/dist/headroom.min.js"></script>
-	<script
-		src="${path}/resources/vendor/onscreen/dist/on-screen.umd.min.js"></script>
-
-	<!-- NoUISlider -->
-	<script
-		src="${path}/resources/vendor/nouislider/distribute/nouislider.min.js"></script>
-
-	<!-- Bootstrap Datepicker -->
-
-
-	<!-- jQuery Waypoints -->
-	<script
-		src="${path}/resources/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
-
-	<!-- Owl acrousel -->
-
-
-
-	<script
-		src="${path}/resources/OwlCarousel2-2.3.4/src/js/owl.carousel.js">
-		$('.owl-carousel').owlCarousel({
-		    loop:false,
-		    margin:10,
-		    nav:true,
-		    responsive:{
-		        0:{
-		            items:1
-		        },
-		        600:{
-		            items:3
-		        },
-		        1000:{
-		            items:5
-		        }
-		    }
-		});
-		</script>
-
-	<!-- Smooth scroll -->
-	<script
-		src="${path}/resources/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-
-	<!-- Fancybox -->
-	<script
-		src="${path}/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
-
-	<!-- Sticky sidebar -->
-	<script
-		src="${path}/resources/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
-
-	<!-- Mapbox & Leaflet.js -->
-	<script src="${path}/resources/vendor/leaflet/dist/leaflet.js"></script>
-
-	<!-- Chartist -->
-	<script src="${path}/resources/vendor/chartist/dist/chartist.min.js"></script>
-	<script
-		src="${path}/resources/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-
-	<!-- Vector Maps -->
-	<script src="${path}/resources/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-	<script
-		src="${path}/resources/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
-
-	<!-- Sliderform -->
-	<script src="${path}/resources/assets/js/jquery.slideform.js"></script>
-
-	<!-- Spaces custom Javascript -->
-	<script
-		src="${path}/resources/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-	<script src="${path}/resources/assets/js/spaces.js"></script>
-	<!-- Core -->
-
-</body>
-
-</html>

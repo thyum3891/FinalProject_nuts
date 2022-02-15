@@ -57,3 +57,28 @@ for(i =0;i<linePath.length;i++){
 </script>
 </body>
 </html>
+<div class="leaflet-popup  leaflet-zoom-animated" style="opacity: 1; transform: translate3d(467px, 469px, 0px); bottom: -7px; left: -124px;"><div class="leaflet-popup-content-wrapper"><div class="leaflet-popup-content" style="width: 201px;">
+                <a href="single-space.html" class="card card-article-wide flex-column no-gutters no-hover">
+                    <div class="card-body py-0 d-flex flex-column justify-content-between col-12">
+                        <h4 class="h5 font-weight-normal mb-3">Meeting Workspace</h4>
+                        <div class="d-flex font-small">
+                            <i class="star fas fa-star text-warning"></i><i class="star fas fa-star text-warning"></i><i class="star far fa-star text-gray-500"></i><i class="star far fa-star text-gray-500"></i><i class="star far fa-star text-gray-500"></i>
+                            <span class="badge badge-pill badge-secondary map-badge ml-2">3</span>
+                        </div>
+                        <div class="d-flex justify-content-between my-3">
+                            <div class="col pl-0">
+                                <span class="text-muted font-xs d-block mb-1">Price</span>
+                                <span class="font-small text-dark font-weight-bold">$99</span>
+                            </div>
+                            <div class="col">
+                                <span class="text-muted font-xs d-block mb-1">Size</span>
+                                <span class="font-small text-dark font-weight-bold">12</span>
+                            </div>
+                            <div class="col pr-0">
+                                <span class="text-muted font-xs d-block mb-1">Sq.Ft</span>
+                                <span class="font-small text-dark font-weight-bold">120</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div></div><div class="leaflet-popup-tip-container"><div class="leaflet-popup-tip"></div></div><a class="leaflet-popup-close-button" href="#close">×</a></div>

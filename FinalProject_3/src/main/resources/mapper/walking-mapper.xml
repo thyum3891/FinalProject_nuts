@@ -18,6 +18,9 @@
 		<result property="estimated_time" column="estimated_time"/>
 		<result property="distance" column="distance"/>
 		<result property="stat" column="stat"/>
+		<result property="nick_name" column="nick_name"/>
+		<result property="avg" column="avg"/>
+		
 </resultMap>
 	
 	<insert id="insertWalkingParty" parameterType="WalkingParty">
@@ -27,19 +30,40 @@
 			#{start_time},#{estimated_time},#{distance},
 			DEFAULT)
 	</insert>
-	
-	<select id="selectWalkingPartyAll" resultMap="walkingPartyMap">
-		SELECT * FROM WORKING_PARTY WHERE (STAT = '모집중') OR (STAT = '마감');
+		
+	<select id="selectWalkingPartyAll" parameterType="string" resultMap="walkingPartyMap">
+		SELECT wp.*,m.nick_name nick_name , s.avg avg FROM WORKING_PARTY wp 
+		JOIN MEMBER m ON writer_id = id 
+		JOIN (SELECT recive_id, avg(score) avg from score group by recive_id) s ON writer_id = s.recive_id 
+		WHERE (STAT = '모집중') OR (STAT = '마감')
+		AND writer_id LIKE (#{id})
+		ORDER BY start_time
+		
 	</select>
 	
 	<select id="selectWalkingPartySearch" parameterType="string" resultMap="walkingPartyMap" >
-		SELECT * FROM WORKING_PARTY WHERE (START_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+0.99999)AND WRITER_ID LIKE #{id} AND (STAT = '모집중') OR (STAT = '마감') ORDER BY start_time
+		SELECT wp.*,m.nick_name nick_name , s.avg avg FROM WORKING_PARTY wp 
+		JOIN MEMBER m ON writer_id = id 
+		JOIN (SELECT recive_id, avg(score) avg from score group by recive_id) s ON writer_id = s.recive_id 
+		WHERE (START_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+ 0.99999) 
+		AND writer_id LIKE (#{id}) 
+		AND (STAT = '모집중') OR (STAT = '마감')
+		ORDER BY start_time
 	</select>
 
 	<delete id="deleteWalkingParty" parameterType="_int" >
 		DELETE FROM WORKING_PARTY WHERE PARTY_NO = #{party_no}
 	</delete>
 	
+	<insert id="insertWalkingReq" parameterType="string">
+		INSERT INTO WALKING_REQUEST VALUES(#{req_no}, DEFAULT, #{respone_id}, #{request_id}, #{party_no})
+	</insert>
 	
+	<select id="selectWalkingReq" resultType="WalkingRequest">
+		SELECT * FROM walking_request
+	</select>
+	<select id="selectReqNo" resultType="string">
+		SELECT WR_NO FROM walking_request
+	</select>
 
 </mapper>
