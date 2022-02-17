@@ -1,9 +1,5 @@
 package com.kh.nuts.walking.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.nuts.walking.service.WalkingService;
 import com.kh.nuts.walking.vo.WalkingParty;
-import com.kh.nuts.walking.vo.WalkingRequest;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,13 +29,13 @@ public class WalkingController {
 	
 	@RequestMapping("/walking/create")
 	public String create(Model model, String pathAll, String pathOne, String distance, String estimated_time,
-			String contant, String startTime,String startDate,HttpSession session) {
+			String contant, String startTime,String startDate,String memberId) {
 		
 		try {
 			
 			WalkingParty wp = new WalkingParty();
 			wp.setContant(contant);
-			wp.setWriter_id("test");
+			wp.setWriter_id(memberId);
 //			wp.setWriter_id(((Member)session.getAttribute("member")).getId());
 			wp.setContant(contant);
 			wp.setDistance(distance);
@@ -64,6 +58,18 @@ public class WalkingController {
 				model.addAttribute("msg", "등록에 실패하였습니다.");
 			}
 			model.addAttribute("location", "/walking/write");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "common/msg";
+	}
+	@RequestMapping("/walking/req")
+	public String req(Model model) {
+		
+		try {
+				model.addAttribute("msg", "신청에 성공하였습니다.");
+			model.addAttribute("location", "/walking/view");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,31 +133,61 @@ public class WalkingController {
 		
 		return "walking/view2";
 	}
-	@RequestMapping("/walking/viewMap")
-	public String walkingViewMap(Model model) {
-		//, String lat, String lon, String searchDate, String writerName
-		String lat = "37.480468681520065" ;
-		String lon = "126.96437473799332";
-		String searchDate = "2022/02/10";
-		String writerName = "";
-		try {
-			if(searchDate.equals("default")) {
-				searchDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-				System.out.println(searchDate);
-			}
-			System.out.println(writerName);
-			List<WalkingParty> wpList = service.selectSearch(lat,lon, searchDate, writerName);
-			
-			System.out.println(wpList);
-			model.addAttribute("myLat",lat);
-			model.addAttribute("myLng",lon);
-			model.addAttribute("wpList",wpList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "/walking/viewMap";
-	}
+//	@RequestMapping("/walking/view3")
+//	public String walkingView3(Model model, String searchDate, String writerName) {
+//		List<WalkingParty> wpList = null;
+//		String reqStr = null;
+//		if(searchDate == null||searchDate.equals("")||searchDate.length() < 1) {
+//			searchDate = "";
+//		}
+//		try {
+//			reqStr = service.selectReqNo();
+//			System.out.println(reqStr);
+//			if(searchDate == null||searchDate.equals("")||searchDate.length() < 1) {
+//				System.out.println("셀렉트 올");
+//				wpList = service.selectAll(writerName);
+//				model.addAttribute("date","");
+//				model.addAttribute("nickName","");
+//			}else {
+//				System.out.println("셀렉트 서치");
+//				wpList = service.selectSearch(searchDate, writerName);
+//			}
+//			model.addAttribute("wpList",wpList);
+//			model.addAttribute("reqStr",reqStr);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return "walking/view3";
+//	}
+	
+	
+	
+//	@RequestMapping("/walking/viewMap")
+//	public String walkingViewMap(Model model) {
+//		//, String lat, String lon, String searchDate, String writerName
+//		String lat = "37.480468681520065" ;
+//		String lon = "126.96437473799332";
+//		String searchDate = "2022/02/10";
+//		String writerName = "";
+//		try {
+//			if(searchDate.equals("default")) {
+//				searchDate = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+//				System.out.println(searchDate);
+//			}
+//			System.out.println(writerName);
+//			List<WalkingParty> wpList = service.selectSearch(lat,lon, searchDate, writerName);
+//			
+//			System.out.println(wpList);
+//			model.addAttribute("myLat",lat);
+//			model.addAttribute("myLng",lon);
+//			model.addAttribute("wpList",wpList);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return "/walking/viewMap";
+//	}
 	
 	@ResponseBody
 	@PostMapping("/walking/partyReq")
@@ -159,13 +195,12 @@ public class WalkingController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(partyNo);
 		try {
+			boolean creatStat = service.insertWalkingReq(partyNo, reqId, respId);
+			map.put("creatStat", creatStat);
+			
 		} catch (Exception e) {
-			// TODO: handle exception
 		}
 			
-		boolean creatStat = service.insertWalkingReq(partyNo, reqId, respId);
-		map.put("creatStat", creatStat);
-		
 		
 		return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
 	}

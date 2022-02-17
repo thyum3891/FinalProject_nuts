@@ -1,5 +1,8 @@
 package com.kh.nuts.hospital.service;
 
-public class HospitalService {
+import com.kh.nuts.hospital.vo.Hospital;
 
+public interface HospitalService {
+	int insertHospital(Hospital hospital);
+	int deleteHospital();
 }

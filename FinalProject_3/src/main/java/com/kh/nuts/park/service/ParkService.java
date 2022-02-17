@@ -1,5 +1,8 @@
 package com.kh.nuts.park.service;
 
-public interface ParkService {
+import com.kh.nuts.park.vo.Park;
 
+public interface ParkService {
+	int insertPark(Park park);
+	int deletePark();
 }

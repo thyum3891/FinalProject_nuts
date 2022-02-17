@@ -17,8 +17,8 @@ public class HospitalParsing {
 		try {
 
 			HospitalParsing hs = new HospitalParsing();
-//			int count = Integer.parseInt(hs.totalCount());
-			int count = 10;
+			int count = Integer.parseInt(hs.totalCount());
+//			int count = 10;
 
 			int num = 10;
 			for(int i = 1;i*num<=count;i++) {
@@ -111,7 +111,6 @@ public class HospitalParsing {
 
 			Hospital result = new Hospital(rnum, publisher, creator, creator, title, subjectCategory, reference,
 					reference, insertDate, venue, venue, description, description, state, affiliation);
-			System.out.println(result.toString());
 			resultList.add(result);
 		}
 

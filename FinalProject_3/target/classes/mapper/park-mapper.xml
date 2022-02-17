@@ -5,23 +5,15 @@
 <mapper namespace="com.kh.nuts.park.mapper.ParkMapper">
 
 	
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(
-			#{id},#{password},#{name},#{age},#{gender},
-			#{phone},#{address},#{email},
-			)
+	<insert id="insertPark" parameterType="Park">
+		INSERT INTO PARK VALUES(
+		#{manageNo}, #{parkNm}, #{lnmadr}, #{rdnmadr}, #{latitude}, #{longitude},  #{parkAr}, 
+		#{institutionNm}, #{phoneNumber}, #{referenceDate}, #{insttCode}
+		)
 	</insert>
 	
-	<select id="selectMemberAll" >
-		SELECT * FROM MEMBER
-	</select>
-	
-	<select id="selectMemberById" parameterType="string" >
-		SELECT * FROM MEMBER WHERE ID = #{id}
-	</select>
-
-	<delete id="deleteMember" parameterType="string">
-		DELETE FROM MEMBER WHERE ID = #{id}
-	</delete>	
+	<delete id="deletePark">
+		DELETE FROM PARK
+	</delete>
 
 </mapper>

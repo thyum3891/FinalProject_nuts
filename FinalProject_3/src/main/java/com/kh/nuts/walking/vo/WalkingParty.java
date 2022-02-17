@@ -14,7 +14,7 @@ import lombok.ToString;
 
 public class WalkingParty {
 
-	int party_no; // 모임 번호
+	String party_no; // 모임 번호
 	String writer_id; // 작성자
 	String pathOne; // 첫좌표
 	String[] pathAll; // 모든좌표

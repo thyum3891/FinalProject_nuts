@@ -61,6 +61,22 @@ public class WalkingServiceImpl implements WalkingService {
 
 		return list;
 	}
+	@Override
+	public List<WalkingParty> selectAll(String id) {
+		List<WalkingParty> list = mapper.selectWalkingPartyAll(id);
+				
+		return list;
+	}
+	
+	@Override
+	public List<WalkingParty> selectSearch(String searchDate, String writer_id) {
+		
+		List<WalkingParty> list = mapper.selectWalkingPartySearch(searchDate, "%"+writer_id+"%");
+		
+		
+		
+		return list;
+	}
 
 	@Override
 	public int insertWorkingParty(WalkingParty workingParty) {

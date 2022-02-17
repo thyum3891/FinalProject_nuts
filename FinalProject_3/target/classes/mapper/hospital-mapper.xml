@@ -5,20 +5,17 @@
 <mapper namespace="com.kh.nuts.hospital.mapper.HospitalMapper">
 
 	
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES()
+	<insert id="insertHospital" parameterType="Hospital">
+		INSERT INTO HOSPITAL VALUES(
+		#{rnum}, #{publisher}, #{creator}, #{collectionDb}, #{title}, #{subjectCategory}, #{reference}, 
+		#{source}, #{insertDate}, #{venue}, #{spatial}, #{description}, #{subDescription},
+		 #{state}, #{affiliation}
+		)
 	</insert>
 	
-	<select id="selectMemberAll" >
-		SELECT * FROM MEMBER
-	</select>
+	<delete id="deleteHospital">
+		DELETE FROM HOSPITAL
+	</delete>
 	
-	<select id="selectMemberById" parameterType="string" >
-		SELECT * FROM MEMBER WHERE ID = #{id}
-	</select>
-
-	<delete id="deleteMember" parameterType="string">
-		DELETE FROM MEMBER WHERE ID = #{id}
-	</delete>	
 
 </mapper>
