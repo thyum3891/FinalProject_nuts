@@ -16,34 +16,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-<!-- Fontawesome -->
-<link type="text/css"
-	href="${path}/resources/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
-	rel="stylesheet">
 
-<!-- Leaflet JS -->
-<link type="text/css"
-	href="${path}/resources/vendor/leaflet/dist/leaflet.css"
-	rel="stylesheet">
-
-<!-- Fancybox -->
-<link rel="stylesheet"
-	href="${path}/resources/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
-
-<!-- VectorMap -->
-<link rel="stylesheet"
-	href="${path}/resources/vendor/jqvmap/dist/jqvmap.min.css">
-
-<!-- Main CSS -->
-<link type="text/css" href="${path}/resources/css/spaces.css"
-	rel="stylesheet">
-
-<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-<style type="text/css">
+<style>
 .bubble {
 	position:relative; 
 	width: 360px; 

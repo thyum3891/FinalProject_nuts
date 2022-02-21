@@ -54,20 +54,21 @@
 
 <body>
     <main>
-        <section class="section-header pb-lg-12" style="background-color: rgba(253, 225, 148,1)">
+        <section class="section-header pb-lg-12 fontJua" style="background-color: rgba(253, 225, 148,1)">
             <div class="container">
                 <div class="row justify-content-center mb-4 mb-lg-5">
                     <div class="col-12 col-md-8 text-left text-sm-center mb-5">
-                        <h2 class="h1 mt-6" style="color: #5E4D44;">모임 생성하기</h2>
-                        <p class="lead mt-3 text-surroundAir font-base" style="color: #BA9F81;">같이 산책할 나만의 메이트를 직접 구해보세요!</p>
+                        <h2 class="h1 mt-6 fontJua" style="color: #5E4D44;">모임 생성하기</h2>
+                        <p class="lead mt-3 text-surroundAir font-base fontJua" style="color: #BA9F81;">같이 산책할 나만의 메이트를 직접 구해보세요!</p>
                     </div>
                 </div>
             </div>
         </section>
-        <form action="${path}/walking/create">
+        <form class="fontJua" action="${path}/walking/create">
 <input id="pathAll" name="pathAll" type="text" hidden="hidden"  required>
 <input id="distance" name="distance" type="text" hidden="hidden"  required>
-<input id="memberId" name="memberId" type="text" hidden="hidden"  required value="${loginMember.id}">
+<!--  <input id="memberId" name="memberId" type="text" hidden="hidden"  required value="${loginMember.id}"> -->
+ <input id="memberId" name="memberId" type="text" hidden="hidden"  required value="test">
         <div class="container mt-n12 z-2">
             <div class="row align-items-center justify-content-between mb-6">
                 <div id="map" class="col-md-6 col-lg-7 border-primary card" style="height: 580px;">

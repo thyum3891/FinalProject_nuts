@@ -26,6 +26,9 @@ public class Hospital {
 	String subDescription;
 	String state;
 	String affiliation;
+	
+	String avg;
+	String n;
 
 //  rnum
 //	publisher

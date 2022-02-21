@@ -7,18 +7,23 @@
 	<!-- typeHandler를 위해 멤버 맵핑 선언 -->
 	
 	
-	<insert id="insertMember" parameterType="member">
+	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES(
-			#{id},#{password},#{name},#{age},#{gender},
-			#{phone},#{address},#{email},
+			#{id},
+		    #{pw},
+		    #{open_profile_url},
+		    #{nick_name},
+		    #{phone_num},
+		    #{profile_ori_name},
+		    #{profile_re_name}
 			)
 	</insert>
 	
-	<select id="selectMemberAll" >
+	<select id="selectMemberAll" resultType="Member">
 		SELECT * FROM MEMBER
 	</select>
 	
-	<select id="selectMemberById" parameterType="string">
+	<select id="selectMemberById" parameterType="string" resultType="Member">
 		SELECT * FROM MEMBER WHERE ID = #{id}
 	</select>
 

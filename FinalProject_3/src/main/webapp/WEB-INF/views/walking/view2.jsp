@@ -201,7 +201,6 @@ kakao.maps.event.addListener(marker${wp.party_no}, 'mouseout', function() {
 function btnFn(){
 	partyReq('${wp.party_no}', 'test2', '${wp.writer_id}');
 }
-console.log('${reqStr}'.indexOf('${wp.party_no}'+'${testId}'));
 if('${reqStr}'.indexOf('${wp.party_no}'+'${testId}') >= 0){
 var content${wp.party_no} = '<div class="bubble" >'+
 	'<div class="row">'+

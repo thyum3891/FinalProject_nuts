@@ -17,5 +17,43 @@
 		DELETE FROM HOSPITAL
 	</delete>
 	
+	<select id="selectHospitalBySearch" resultType="Hospital" parameterType="string">
+<!-- 		SELECT * FROM -->
+<!-- 		(SELECT ROWNUM n, h.* FROM  -->
+<!-- 		(SELECT DISTINCT REFERENCE,rnum, TITLE, VENUE, hc.* FROM hospital hp LEFT OUTER JOIN (SELECT hc_rnum, AVG(H_SCORE) "AVG" FROM hospital_comment GROUP BY hc_rnum) hc on hp.rnum = hc.hc_rnum -->
+<!-- 		WHERE subjectcategory = '동물병원'  -->
+<!-- 		AND VENUE LIKE #{addr}  -->
+<!-- 		AND TITLE LIKE #{title}  -->
+<!-- 		AND REFERENCE IS NOT NULL ) h order by avg ) -->
+<!-- 		WHERE ROWNUM BETWEEN #{pageStart} AND #{pageEnd} -->
+		SELECT DISTINCT REFERENCE,rnum, TITLE, VENUE, hc.* FROM hospital hp 
+		LEFT OUTER JOIN (SELECT hc_rnum, AVG(H_SCORE) "AVG" FROM hospital_comment GROUP BY hc_rnum) hc 
+		ON hp.rnum = hc.hc_rnum
+		WHERE subjectcategory = '동물병원' 
+		AND VENUE LIKE #{addr} 
+		AND TITLE LIKE #{title}
+		AND REFERENCE IS NOT NULL 
+		ORDER BY AVG
+	</select>
 
+	<select id="selectHospital" resultType="Hospital" parameterType="string">
+		SELECT DISTINCT REFERENCE,rnum, TITLE, VENUE, hc.* FROM hospital hp 
+		LEFT OUTER JOIN (SELECT hc_rnum, AVG(H_SCORE) "AVG" FROM hospital_comment GROUP BY hc_rnum) hc 
+		ON hp.rnum = hc.hc_rnum
+		WHERE subjectcategory = '동물병원' 
+		AND VENUE LIKE #{addr} 
+		AND TITLE LIKE #{title}
+		AND REFERENCE IS NOT NULL 
+		ORDER BY AVG
+	</select>
+
+	<select id="selectCountbyHospital" parameterType="string" resultType="_int">
+		SELECT
+		COUNT(*) FROM
+		(SELECT DISTINCT REFERENCE FROM hospital
+		WHERE subjectcategory = '동물병원' 
+		AND VENUE LIKE #{addr} 
+		AND TITLE LIKE #{title}
+		AND REFERENCE IS NOT NULL)
+	</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.kh.nuts.park.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,7 @@ public class ParkServiceImpl implements ParkService {
 		
 		return mapper.deletePark();
 	}
+
+	
 
 }

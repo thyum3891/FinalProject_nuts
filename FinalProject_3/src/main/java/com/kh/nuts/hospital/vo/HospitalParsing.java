@@ -110,7 +110,7 @@ public class HospitalParsing {
 					str.lastIndexOf("</affiliation>")).trim();
 
 			Hospital result = new Hospital(rnum, publisher, creator, creator, title, subjectCategory, reference,
-					reference, insertDate, venue, venue, description, description, state, affiliation);
+					reference, insertDate, venue, venue, description, description, state, affiliation, "", "");
 			resultList.add(result);
 		}
 

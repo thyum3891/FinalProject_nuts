@@ -15,9 +15,12 @@ public class HospitalComment {
 
 	int hc_no;// 병원 후기 번호
 	String id;// 아이디
-	String rnum;// 동물병원 번호
+	String hc_rnum;// 동물병원 번호
 	String content;// 내용
-	String path;// 사진경로
+	String renamedFileName;// 사진경로
+	String originalFileName;
+	String hpTitle; // join
+	String h_score; 
 
 	
 }
