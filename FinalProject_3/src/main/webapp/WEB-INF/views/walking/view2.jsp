@@ -10,24 +10,10 @@
 
 <div class="section section-lg pt-0">
 	<div class="container mt-n10 ">
-		<div class="flex-container">
-			<img src="${path}/resources/images/caret-up-fill.svg" width="50px"
-				alt="" onclick="scrollUp()" style="cursor: pointer;"
-				class="scrollBtn"> <img
-				src="${path}/resources/images/caret-down-fill.svg" width="50px"
-				alt="" onclick="scrollDown()" style="cursor: pointer;"
-				class="scrollBtn">
-
-		</div>
-
-
-		<div class="row">
+				<div class="row">
 			<div class="col-md-12 ">
-				<div id="listScroll" class="row overflow-hidden"
-					style="height: 665px;">
-					<c:if test="${wpList == null}">
-	검색결과가 없습니다.
-</c:if>
+				<div id="listScroll" class="row"
+					style="">
 					<c:forEach var="wp" items="${wpList}" varStatus="vs">
 						<!-- Item 1 -->
 						<div style="width: 363px; height: 658px; margin: 5px;" >
@@ -47,10 +33,14 @@
 								<div class="card-body ">
 									<a href="./single-space.html">
 										<h4 class="h5 fontJua">
-											<span><img
-												src="${path}/resources/images/KakaoTalk_20220125_140624405.jpg"
+											<span>
+											<c:if test="${wp.profile != null}">
+											<img src="${path}/resources/upload/member/${wp.profile}"
 												class="card-img-top rounded-circle border-white"
-												style="height: 50px; width: 50px;" alt=""></span>${wp.nick_name}
+												style="height: 50px; width: 50px;" alt="">
+											</c:if>
+												
+											</span>${wp.nick_name}
 										</h4>
 									</a>
 									<div class="d-flex my-4">

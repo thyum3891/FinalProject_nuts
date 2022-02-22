@@ -32,17 +32,16 @@
 	</insert>
 		
 	<select id="selectWalkingPartyAll" parameterType="string" resultMap="walkingPartyMap">
-		SELECT wp.*,m.nick_name nick_name , s.avg avg FROM WORKING_PARTY wp 
+		SELECT wp.*,m.nick_name nick_name , m.profile_re_name profile , s.avg avg FROM WORKING_PARTY wp 
 		JOIN MEMBER m ON writer_id = id 
 		JOIN (SELECT recive_id, avg(score) avg from score group by recive_id) s ON writer_id = s.recive_id 
-		WHERE (STAT = '모집중') OR (STAT = '마감')
-		AND writer_id LIKE (#{id})
+		WHERE writer_id LIKE (#{id}) 
+		AND (STAT = '모집중') OR (STAT = '마감')
 		ORDER BY start_time
-		
 	</select>
 	
 	<select id="selectWalkingPartySearch" parameterType="string" resultMap="walkingPartyMap" >
-		SELECT wp.*,m.nick_name nick_name , s.avg avg FROM WORKING_PARTY wp 
+		SELECT wp.*,m.nick_name nick_name , m.profile_re_name profile , s.avg avg FROM WORKING_PARTY wp 
 		JOIN MEMBER m ON writer_id = id 
 		JOIN (SELECT recive_id, avg(score) avg from score group by recive_id) s ON writer_id = s.recive_id 
 		WHERE (START_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+ 0.99999) 

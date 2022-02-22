@@ -149,7 +149,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><span class="fas fa-link "></span></span>
                                                 </div>
-                                                <input class="form-control" id="upfile" name="upfile" type="file" aria-label="upfile" accept=".jpg, .jpeg, .png" onchange="console.log(this.files)">
+                                                <input class="form-control" id="upfile" name="upfile" type="file" aria-label="upfile" accept=".jpg, .jpeg, .png">
                                                 	
                                             </div>
                                         </div>

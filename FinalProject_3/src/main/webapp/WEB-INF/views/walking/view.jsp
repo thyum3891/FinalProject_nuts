@@ -81,7 +81,8 @@ body, .fontJua {
 </head>
 	
 <body>
-		<section class="section section-header pb-11" style="background-color: rgba(253, 225, 148,1)">
+<main>
+<section class="section section-header pb-11" style="background-color: rgba(253, 225, 148,1)">
 			<div class="container">
 				<div class="row justify-content-between align-items-center">
 					<div
@@ -141,7 +142,11 @@ body, .fontJua {
 
 
 		</section>
-<div id= "view" style="height: 843px"></div>
+<div id= "view" class="" style="height: 100%">
+
+</div>
+</main>
+		
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 

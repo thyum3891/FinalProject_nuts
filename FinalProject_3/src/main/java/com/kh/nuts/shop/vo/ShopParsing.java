@@ -72,7 +72,7 @@ import java.util.Map;
 	        }
 	    }
 	    
-	    public List<Shop> passing() {
+	    public List<Shop> passing(String display) {
 	    	
 	    	String clientId = "4BZohPFKsut7txhjOW2T";
 	        String clientSecret = "EGh4XdNsa5"; 
@@ -86,7 +86,7 @@ import java.util.Map;
 	        }
 
 
-	        String apiURL = "https://openapi.naver.com/v1/search/shop.json?display=100&query=" + text;  
+	        String apiURL = "https://openapi.naver.com/v1/search/shop.json?display="+display+"&query="+ text;  
 
 
 	        Map<String, String> requestHeaders = new HashMap<String, String>();

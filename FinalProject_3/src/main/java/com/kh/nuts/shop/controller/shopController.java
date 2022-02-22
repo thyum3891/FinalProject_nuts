@@ -15,7 +15,7 @@ public class shopController {
 	static private List<Shop> shopList;
 	{
 		if(shopList == null) {
-			shopList = new ShopParsing().passing();
+			shopList = new ShopParsing().passing("100");
 		}
 	}
 	

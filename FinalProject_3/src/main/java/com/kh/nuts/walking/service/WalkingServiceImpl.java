@@ -19,7 +19,8 @@ public class WalkingServiceImpl implements WalkingService {
 
 	@Override
 	public List<WalkingParty> selectAll(String lat, String lng, String id) {
-		List<WalkingParty> list = mapper.selectWalkingPartyAll(id);
+		List<WalkingParty> list = mapper.selectWalkingPartyAll("%"+id+"%");
+		System.out.println(list);
 
 		list.sort(new Comparator<WalkingParty>() {
 

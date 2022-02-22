@@ -362,11 +362,6 @@
    
 
  </script>
-		<script type="text/javascript">
-   
-   
-	
-                    </script>
 
 		<!-- Core -->
 		<script src="${path}/resources/vendor/jquery/dist/jquery.min.js "></script>

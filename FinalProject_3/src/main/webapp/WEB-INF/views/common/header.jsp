@@ -6,6 +6,7 @@
 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,10 +47,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
 	rel="stylesheet">
-    <!-- Fontawesome -->
-    <link type="text/css" href="${path}/resources/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     
-
+ <!-- Fontawesome -->
+    <link type="text/css" href="${path}/resources/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <!-- Leaflet JS -->
     <link type="text/css" href="${path}/resources/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
 
@@ -65,6 +65,38 @@
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 <style type="text/css">
+ * {
+            font-family: 'Jua', sans-serif;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        li {
+            font-family: 'Jua' !important;
+        }
+        
+        .bg {
+            background-color: #fae3a5;
+        }
+        
+        input,
+        button {
+            border: none;
+        }
+        
+        span,
+        tr,
+        td,
+        th,
+        a {
+            color: #5E4D44;
+        }
+
 	.loginBtn {
 	border-color: #5E4D44; 
 	background-color: #5E4D44; 
@@ -91,7 +123,7 @@
    <header class="header-global fontJua" >
         <nav id="navbar-main" class="navbar navbar-main  navbar-expand-lg" style="background-color: white">
             <div class="container">
-                <a class="navbar-brand @@logo_classes ml-4" href="../index.html">
+                <a class="navbar-brand @@logo_classes ml-4" href="${path}">
                     <img src="${path}/resources/images/nutslogo.svg" style="height: 80px;">
                 </a>
                 <div class="navbar-collapse collapse ml-6" id="navbar_global">
@@ -152,9 +184,24 @@
                     </ul>
                 </div>
                 <div class="d-none d-lg-block  mr-4">
-                    <a href="${path }/login" class="btn btn-md mr-3 loginBtn">
-                        <span class="">로그인</span>
-                    </a>
+                	<c:if test="${loginMember == null}">
+	                    <a href="${path }/login" class="btn btn-md mr-3 loginBtn">
+	                        로그인
+	                    </a>
+                	</c:if>
+                	
+                	<c:if test="${loginMember != null}">
+                		<span>
+                		<c:if test="${loginMember.profile_re_name != null}">
+                			<img  class=" rounded-circle border-white" src="${path}/resources/upload/member/${loginMember.profile_re_name}" width="50px" height="50px">
+                		</c:if>
+                		
+                		<a href="${path}/logout" class="btn btn-md mr-3">
+	                        로그아웃
+	                    </a>  
+                		</span>
+                		
+                	</c:if>
                 </div>
             </div>
         </nav>

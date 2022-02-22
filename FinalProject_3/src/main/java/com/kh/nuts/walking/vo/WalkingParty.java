@@ -1,6 +1,5 @@
 package com.kh.nuts.walking.vo;
 
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +25,7 @@ public class WalkingParty {
 	String distance; // 거리
 	String stat; // 상태
 	String nick_name; // 상태
+	String profile;
 	double avg; // 상태
 
 }

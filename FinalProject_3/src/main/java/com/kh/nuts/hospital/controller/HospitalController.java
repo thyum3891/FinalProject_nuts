@@ -46,8 +46,8 @@ public class HospitalController {
 			System.out.println(count);
 			PageInfo pageInfo = new PageInfo(page, 5, count, 10);
 			list = service.selectHospitalBySearch(addr, title, pageInfo);
+			System.out.println(list);
 			listAll = service.selectHospital(addr, title);
-			model.addAttribute("hospListAll", listAll);
 			model.addAttribute("hospList", list);
 			model.addAttribute("pageInfo",pageInfo);
 		} catch (Exception e) {
