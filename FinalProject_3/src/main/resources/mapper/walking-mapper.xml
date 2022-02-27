@@ -36,8 +36,15 @@
 		JOIN MEMBER m ON writer_id = id 
 		JOIN (SELECT recive_id, avg(score) avg from score group by recive_id) s ON writer_id = s.recive_id 
 		WHERE writer_id LIKE (#{id}) 
-		AND (STAT = '모집중') OR (STAT = '마감')
+		AND (STAT = '모집중')
 		ORDER BY start_time
+	</select>
+	
+	<select id="selectMyParty" parameterType="string" resultMap="walkingPartyMap">
+		SELECT * FROM WORKING_PARTY		
+		WHERE writer_id = #{id}
+		AND (STAT = '모집중')
+		ORDER BY START_DATE, START_TIME, STAT
 	</select>
 	
 	<select id="selectWalkingPartySearch" parameterType="string" resultMap="walkingPartyMap" >
@@ -46,9 +53,11 @@
 		JOIN (SELECT recive_id, avg(score) avg from score group by recive_id) s ON writer_id = s.recive_id 
 		WHERE (START_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+ 0.99999) 
 		AND writer_id LIKE (#{id}) 
-		AND (STAT = '모집중') OR (STAT = '마감')
+		AND (STAT = '모집중')
 		ORDER BY start_time
 	</select>
+
+	
 
 	<delete id="deleteWalkingParty" parameterType="_int" >
 		DELETE FROM WORKING_PARTY WHERE PARTY_NO = #{party_no}
@@ -61,8 +70,34 @@
 	<select id="selectWalkingReq" resultType="WalkingRequest">
 		SELECT * FROM walking_request
 	</select>
+	
 	<select id="selectReqNo" resultType="string">
 		SELECT WR_NO FROM walking_request
 	</select>
-
+	
+	<select id="selectReqIdInfo" parameterType="string" resultType="WalkingRequest">
+		SELECT wr.*, m.nick_name NICK_NAME, m.profile_re_name profile  FROM walking_request wr JOIN MEMBER m ON wr.REQUEST_ID = m.ID WHERE PARTY_NO = #{party_no} AND wr.STAT = '확인 필요' 
+	</select>
+	<select id="ReqCount" parameterType="string" resultType="_int">
+		SELECT count(*)  FROM walking_request wr JOIN MEMBER m ON wr.REQUEST_ID = m.ID WHERE PARTY_NO = #{party_no} AND wr.STAT = '확인 필요' 
+	</select>
+	
+	<select id="selectWalkingPartner" parameterType="string" resultType="WalkingRequest">
+		SELECT DISTINCT m.id, m.nick_name NICK_NAME, m.profile_re_name profile, m.open_profile_url kakao  FROM walking_request wr JOIN MEMBER m ON wr.REQUEST_ID = m.ID WHERE wr.STAT = '수락' AND wr.response_id = #{myId}
+	</select>
+	
+	<update id="partyReqUdate" parameterType="string" >
+		UPDATE walking_request SET STAT = 
+		<if test='stat.equals("수락")'>
+		'수락' 		
+		</if>
+		<if test='stat.equals("거절")'>
+		'거절' 		
+		</if>
+		WHERE WR_NO = #{req_no} 
+	</update>
+	<update id="partyStatUdate" parameterType="string" >
+		UPDATE working_party SET STAT = '마감'		
+		WHERE party_no = #{party_no} 
+	</update>
 </mapper>

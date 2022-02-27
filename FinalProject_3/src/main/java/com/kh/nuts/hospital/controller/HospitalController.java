@@ -40,14 +40,10 @@ public class HospitalController {
 			page = Integer.parseInt(pageStr);
 		}
 		List<Hospital> list = null;
-		List<Hospital> listAll = null;
 		try {
 			int count = service.selectCountbyHospital(addr, title);
-			System.out.println(count);
 			PageInfo pageInfo = new PageInfo(page, 5, count, 10);
 			list = service.selectHospitalBySearch(addr, title, pageInfo);
-			System.out.println(list);
-			listAll = service.selectHospital(addr, title);
 			model.addAttribute("hospList", list);
 			model.addAttribute("pageInfo",pageInfo);
 		} catch (Exception e) {

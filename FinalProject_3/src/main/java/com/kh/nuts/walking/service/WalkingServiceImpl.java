@@ -20,7 +20,6 @@ public class WalkingServiceImpl implements WalkingService {
 	@Override
 	public List<WalkingParty> selectAll(String lat, String lng, String id) {
 		List<WalkingParty> list = mapper.selectWalkingPartyAll("%"+id+"%");
-		System.out.println(list);
 
 		list.sort(new Comparator<WalkingParty>() {
 
@@ -134,6 +133,39 @@ public class WalkingServiceImpl implements WalkingService {
 	@Override
 	public List<WalkingRequest> selectWalkingReq() {
 		return mapper.selectWalkingReq();
+	}
+
+	@Override
+	public List<WalkingParty> selectMyParty(String writer_id) {
+		return mapper.selectMyParty(writer_id);
+	}
+
+	@Override
+	public List<WalkingRequest> selectReqIdInfo(String party_no) {
+		
+		return mapper.selectReqIdInfo(party_no);
+	}
+
+	@Override
+	public boolean partyReqUdate(String req_no, String stat) {
+		
+		return mapper.partyReqUdate(req_no, stat)>0;
+	}
+
+	@Override
+	public boolean partyStatUdate(String party_no) {
+		return mapper.partyStatUdate(party_no)>0;
+	}
+
+	@Override
+	public List<WalkingRequest> selectWalkingPartner(String myId) {
+		
+		return mapper.selectWalkingPartner(myId);
+	}
+
+	@Override
+	public int ReqCount(String party_no) {
+		return mapper.ReqCount(party_no);
 	}
 
 	

@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 
 public class HotdogLike {
-	String HL_LIKE;
-	String MEMBER_ID;
-	String HOT_NO;
+	String hl_id;
+	String member_id;
+	String hot_no;
 }

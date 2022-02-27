@@ -2,6 +2,7 @@ package com.kh.nuts.home.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,13 +66,10 @@ public class HomeController {
 		String reqStr = null;
 		try {
 			reqStr = wpService.selectReqNo();
-			System.out.println(lat);
-			System.out.println(lon);
 			wpList = wpService.selectAll(lat, lon, "");
 			model.addAttribute("myLat",lat);
 			model.addAttribute("myLng",lon);
 			model.addAttribute("wpList",wpList);
-			System.out.println(wpList);
 			model.addAttribute("reqStr",reqStr);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,4 +78,6 @@ public class HomeController {
 		
 		return "home/wpAjax";
 	}
+	
+
 }

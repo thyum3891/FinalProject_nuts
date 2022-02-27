@@ -68,7 +68,15 @@
                         </div>
                         <div class="col-12 d-flex align-items-center justify-content-center">
                             <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft  rounded  p-4 p-lg-5 w-100 fmxw-500" style="border: 1.5px solid #5E4D44;">
+                                        
+                                <c:if test="${loginMember!=null}">
+                                <form action="${path}/member/update" method="post" enctype="multipart/form-data">
+		                                    </c:if>
+		                                    
+		                                    <c:if test="${loginMember==null}">
                                 <form action="${path}/member/enroll" method="post" enctype="multipart/form-data">
+		                                    </c:if>
+                                
                                     <!-- Form -->
                                     <div class="form-group">
                                         <label for="exampleInputIcon4" class="font-weight-bolder">아이디</label>
@@ -76,25 +84,30 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><span class="fas fa-dog"></span></span>
                                             </div>
-                                            <input style=" border-top-right-radius: 7px; border-bottom-right-radius: 7px;" class="form-control" id="id" name="id" placeholder="아이디를 입력하세요" type="text" aria-label="id" required> &nbsp;
-                                            <input type="button" class="btn btn-primary" id="idCheck" name="idCheck" value="중복확인" onclick="idCheckF()">
+                                             <c:if test="${loginMember!=null}">
+                                           		 <input style=" border-top-right-radius: 7px; border-bottom-right-radius: 7px;" class="form-control" id="id2"  placeholder="아이디를 입력하세요" type="text" aria-label="id" required disabled="disabled"> &nbsp;
+                                           		 <input style=" border-top-right-radius: 7px; border-bottom-right-radius: 7px;" class="form-control" id="id" name="id" placeholder="아이디를 입력하세요" type="text" aria-label="id" required hidden> &nbsp;
+		                                    </c:if>
+		                                    
+		                                    <c:if test="${loginMember==null}">
+	                                            <input style=" border-top-right-radius: 7px; border-bottom-right-radius: 7px;" class="form-control" id="id" name="id" placeholder="아이디를 입력하세요" type="text" aria-label="id" required> &nbsp;
+	                                            <input type="button" class="btn btn-primary" id="idCheck" name="idCheck" value="중복확인" onclick="idCheckF()">
+		                                    </c:if>
                                         </div>
                                     </div>
-                                    <!-- End of Form -->
                                     <div class="form-group">
-                                        <!-- Form -->
-                                        <div class="form-group">
+                                    
+                                         <div class="form-group">
                                             <label for="exampleInputIcon4" class="font-weight-bolder">비밀번호</label>
                                             <div class="input-group mb-4 ">
                                                 <div class="input-group-prepend ">
                                                     <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
                                                 </div>
                                                 <input class="form-control" id="password1" name="pw" placeholder="비밀번호를 입력하세요" type="password" aria-label="Password" required>
+                                                
                                             </div>
 
                                         </div>
-                                        <!-- End of Form -->
-                                        <!-- Form -->
                                         <div class="form-group">
                                             <label for="exampleInputIcon4" class="font-weight-bolder">비밀번호 확인</label>
                                             <div class="input-group">
@@ -104,8 +117,7 @@
                                                 <input class="form-control" id="password2" name="pw2" placeholder="비밀번호를 한 번 더 입력하세요 " type="password" onblur="checkPw()" aria-label="Password" required>
                                             </div>
                                         </div>
-                                        <!-- End of Form -->
-                                        <!-- Form -->
+                                       
                                         <div class="form-group">
                                             <label for="exampleInputIcon4" class="font-weight-bolder">닉네임</label>
 
@@ -114,12 +126,9 @@
                                                     <span class="input-group-text"><span class="fas fa-book"></span></span>
                                                 </div>
                                                 <input style=" border-top-right-radius: 7px; border-bottom-right-radius: 7px;" class="form-control" id="nickname" name="nick_name" placeholder="닉네임을 입력하세요 " type="text" aria-label="nickname">&nbsp;
-                                                <input type="button" id="nicknameCheck" name="nicknameCheck" class="btn  btn-primary " value="중복확인">
                                             </div>
                                         </div>
-                                        <!-- End of Form -->
 
-                                        <!-- Form -->
                                         <div class="form-group">
                                             <label for="exampleInputIcon4" class="font-weight-bolder">휴대전화</label>
                                             <div class="input-group mb-4 ">
@@ -129,9 +138,7 @@
                                                 <input class="form-control" id="phone" name="phone_num" placeholder="숫자만 입력해주세요 ex) 01012345678 " type="text" aria-label="phone">
                                             </div>
                                         </div>
-                                        <!-- End of Form -->
                                         
-                                        <!-- Form -->
                                         <div class="form-group">
                                             <label for="exampleInputIcon4" class="font-weight-bolder">카카오톡 오픈 프로필 url</label>
                                             <div class="input-group mb-5">
@@ -141,8 +148,6 @@
                                                 <input class="form-control" id="kakaourl" name="open_profile_url" placeholder="URL을 입력해주세요 " type="text" aria-label="kakaorul">
                                             </div>
                                         </div>
-                                        <!-- End of Form -->
-                                        <!-- Form -->
                                         <div class="form-group">
                                             <label for="exampleInputIcon4" class="font-weight-bolder">프로필 사진</label>
                                             <div class="input-group mb-5">
@@ -156,8 +161,15 @@
 	                                            <img id="img"  class= "card-img-top rounded-circle " style="height:  150px; width: 150px; display: none; border: solid, 3px, black ;margin: 5px; align-items: center" >
                                         <!-- End of Form -->
                                     </div>
-                                    <button type="submit" id="sign-up" class="btn btn-block btn-primary ">회원가입</button>
+                                    <c:if test="${loginMember!=null}">
+                                    	<button type="submit" id="sign-up" class="btn btn-block btn-primary ">수정</button>
+                                    </c:if>
+                                    <c:if test="${loginMember==null}">
+                                    	<button type="submit" id="sign-up" class="btn btn-block btn-primary ">회원가입</button>
+                                    </c:if>
                                 </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -166,7 +178,22 @@
             </section>
         </div>
     </main>
+   
 	<script type="text/javascript">
+	 <c:if test="${loginMember!=null }">
+	    $("#id").val('${loginMember.id}');
+	    $("#id2").val('${loginMember.id}');
+	    $("#nickname").val('${loginMember.nick_name}');
+	    $("#phone").val('${loginMember.phone_num}');
+	    $("#kakaourl").val('${loginMember.open_profile_url}');
+	    <c:if test="${loginMember.profile_ori_name!=null }">
+	  	  $("#img").attr("src", '${path}/resources/upload/member/${loginMember.profile_re_name}');
+	  	$("#img").css("display", "block");
+	    </c:if>
+	  
+	 </c:if>
+	 
+	
 	$(document).ready(function(){
 		$("#upfile").on("change", handleImgFileSelect);
 	})

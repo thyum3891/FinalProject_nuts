@@ -44,7 +44,6 @@
 									</tr>
 								</table>
 								<div class="card-body ">
-									<a href="./single-space.html">
 										<h4 class="h5 fontJua">
 											<span>
 											<c:if test="${wp.profile != null}">
@@ -55,7 +54,6 @@
 												
 												</span>${wp.nick_name}
 										</h4>
-									</a>
 									<div class="d-flex my-4">
 										<c:forEach begin="1" end="${wp.avg/1}">
 											<span class="star fas fa-star text-warning"></span>
@@ -118,10 +116,13 @@
 											center: new kakao.maps.LatLng(${myLat}, ${myLng}), // 지도의 중심좌표
 												level: 5 // 지도의 확대 레벨
 											};
-									//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 									
 									var map = new kakao.maps.Map(mapContainer, mapOption); 
-									// 지도에 표시할 선을 생성합니다
+									
+									map.setDraggable(false);		
+									
+									map.setZoomable(false);
+									
 									var polyline = new kakao.maps.Polyline({
 										path: linePath, // 선을 구성하는 좌표배열 입니다
 										strokeWeight: 5, // 선의 두께 입니다

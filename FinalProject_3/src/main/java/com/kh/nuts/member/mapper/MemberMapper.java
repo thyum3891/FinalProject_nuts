@@ -11,6 +11,7 @@ import com.kh.nuts.member.vo.Member;
 
 public interface MemberMapper {
 	int insertMember(Member member);
+	int updateMember(Member member);
 	List<Member> selectMemberAll();
 	Member selectMemberById(@Param("id")String id);
 	int deleteMember(@Param("id")String id);

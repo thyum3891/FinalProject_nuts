@@ -166,7 +166,7 @@
                                                 <span class="d-block small text-surroundAir" style="color: #5E4D44; ">공지사항</span>
                                             </div>
                                         </a>
-                                        <a href="https://themesberg.com/docs/spaces/getting-started/quick-start/" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4 navBtn">
+                                        <a href="${path}/hotdog/list" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4 navBtn">
                                             <span class="icon icon-md icon-secondary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16" style="color: #5E4D44;">
                                                     <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -193,7 +193,9 @@
                 	<c:if test="${loginMember != null}">
                 		<span>
                 		<c:if test="${loginMember.profile_re_name != null}">
-                			<img  class=" rounded-circle border-white" src="${path}/resources/upload/member/${loginMember.profile_re_name}" width="50px" height="50px">
+                			<a onclick="location.href = '${path}/myPage'">
+                				<img  class=" rounded-circle border-white" src="${path}/resources/upload/member/${loginMember.profile_re_name}" width="50px" height="50px">
+                			</a>
                 		</c:if>
                 		
                 		<a href="${path}/logout" class="btn btn-md mr-3">
@@ -210,6 +212,7 @@
     
     
     <!-- Core -->
+    
     <script src="${path}/resources/vendor/jquery/dist/jquery.min.js"></script>
     <script src="${path}/resources/vendor/popper.js/dist/umd/popper.min.js"></script>
     <script src="${path}/resources/vendor/bootstrap/dist/js/bootstrap.min.js"></script>

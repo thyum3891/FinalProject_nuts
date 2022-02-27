@@ -15,4 +15,5 @@ public interface MemberService {
 	boolean validateById(String userId);
 	Member login(String id, String pwd);
 	String saveFile(MultipartFile upfile, String savePath);
+	int updateMember(Member member);
 }

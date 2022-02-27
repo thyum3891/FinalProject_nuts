@@ -30,5 +30,20 @@
 	<delete id="deleteMember" parameterType="string">
 		DELETE FROM MEMBER WHERE ID = #{id}
 	</delete>	
-
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER SET
+		<if test="pw != null">
+		PW = #{pw}, 
+		</if>
+		OPEN_PROFILE_URL = #{open_profile_url},
+		NICK_NAME =  #{nick_name},
+		<if test="profile_ori_name != null">
+		PROFILE_ORI_NAME = #{profile_ori_name},
+		PROFILE_RE_NAME = #{profile_re_name},
+		</if>
+		PHONE_NUM = #{phone_num}
+		WHERE
+		ID = #{id}
+	</update>
 </mapper>

@@ -3,27 +3,111 @@
 
 <!-- 실질적인 SQL이 들어가는 Mapper -->
 <mapper namespace="com.kh.nuts.hotdog.mapper.HotdogMapper">
-
-	<!-- typeHandler를 위해 멤버 맵핑 선언 -->
-
+	<resultMap type="Hotdog" id="HotdogListResultMap">
+		<id property="no" column="NO"/>
+		<result property="hot_no" column="HOT_NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="filename" column="FILENAME"/>
+		<result property="re_filename" column="RE_FILENAME"/>
+		<result property="write_date" column="WRITE_DATE"/>
+		<result property="write" column="WRITE"/>
+	</resultMap>
 	
-	<insert id="insertMember" >
-		INSERT INTO MEMBER VALUES(
-			#{id},#{password},#{name},#{age},#{gender},
-			#{phone},#{address},#{email},
-		)
+	<select id="selectHotdogList" resultType="Hotdog" parameterType="string">
+		SELECT  H.HOT_NO,
+				H.TITLE, 
+				H.CONTENT, 
+				H.FILENAME, 
+				H.RE_FILENAME, 
+				H.WRITE_DATE, 
+				H.WRITE,
+				M.NICK_NAME,
+				M.open_profile_url kakao,
+				M.PROFILE_RE_NAME profile,
+				L.count
+		FROM HOTDOG H
+		JOIN MEMBER M ON(H.WRITE = M.ID)
+		LEFT OUTER JOIN (SELECT count(*) count, hot_no  from hotdog_like GROUP BY HOT_NO) L ON H.HOT_NO = L.hot_no
+		WHERE H.TITLE LIKE '%'||#{title}||'%'
+		AND M.NICK_NAME LIKE '%'||#{nick_name}||'%'
+		ORDER BY WRITE_DATE DESC
+	</select>
+	
+	<select id="selectCount" resultType="int" parameterType="string">
+		SELECT  
+			count(*)
+		FROM HOTDOG H
+		JOIN MEMBER M ON(H.WRITE = M.ID)
+		LEFT OUTER JOIN (SELECT count(*) count, hot_no  from hotdog_like GROUP BY HOT_NO) L ON H.HOT_NO = L.hot_no
+		WHERE H.TITLE LIKE '%'||#{title}||'%'
+		AND M.NICK_NAME LIKE '%'||#{nick_name}||'%'
+		ORDER BY WRITE_DATE DESC
+	</select>
+	<select id="selectHotdogDetail" resultType="Hotdog" parameterType="string">
+		SELECT  H.HOT_NO,
+				H.TITLE, 
+				H.CONTENT, 
+				H.FILENAME, 
+				H.RE_FILENAME, 
+				H.WRITE_DATE, 
+				H.WRITE,
+				M.NICK_NAME,
+				M.open_profile_url kakao,
+				M.PROFILE_RE_NAME profile,
+				L.count
+		FROM HOTDOG H
+		JOIN MEMBER M ON(H.WRITE = M.ID)
+		LEFT OUTER JOIN (SELECT count(*) count, hot_no  from hotdog_like GROUP BY HOT_NO) L ON H.HOT_NO = L.hot_no
+		WHERE H.HOT_NO = #{hot_no} 		
+	</select>
+
+	<delete id="deleteHotdog" parameterType="string">
+		DELETE FROM HOTDOG WHERE HOT_NO = #{hot_no}
+	</delete>	
+	
+	<update id="updateHotdog" parameterType="Hotdog">
+		UPDATE HOTDOG
+		SET
+			TITLE=#{title},
+			CONTENT=#{content},
+			<if test="FILENAME != null">
+				FILENAME=#{filename},
+			</if>
+			<if test="RE_FILENAME != null">
+				RE_FILENAME=#{re_filename},
+			</if>
+		WHERE
+			HOT_NO=#{HOT_NO}
+	</update>
+	
+	<insert id="insertHotdog" parameterType="Hotdog">
+	INSERT INTO HOTDOG VALUES(
+	SEQ_HOT_NO.NEXTVAL,
+		#{title},
+	 	#{content},
+		#{filename},
+		#{re_filename},
+		SYSDATE,
+		#{write}
+	)
 	</insert>
 	
-	<select id="selectMemberAll" >
-		SELECT * FROM MEMBER
-	</select>
+	<insert id="insertLike" parameterType="HotdogLike">
+	INSERT INTO HOTDOG_LIKE VALUES(
+		#{hl_id},
+		#{member_id},
+		#{hot_no}
+	)
+	</insert>
 	
-	<select id="selectMemberById" parameterType="string" >
-		SELECT * FROM MEMBER WHERE ID = #{id}
-	</select>
-
-	<delete id="deleteMember" parameterType="string">
-		DELETE FROM MEMBER WHERE ID = #{id}
+	<delete id="deleteLike" parameterType="string">
+		DELETE FROM hotdog_like WHERE HL_ID = #{hl_id}
 	</delete>	
+	
+
+	<select id="selectLike" parameterType="string" resultType="HotdogLike">
+		SELECT * FROM hotdog_like WHERE HL_ID = #{hl_id}
+	</select>
 
 </mapper>

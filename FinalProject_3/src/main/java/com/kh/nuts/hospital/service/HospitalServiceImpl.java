@@ -35,12 +35,10 @@ public class HospitalServiceImpl implements HospitalService {
 		str1.append("%");
 		str1.append(addr);
 		str1.append("%");
-		System.out.println(str1.toString());
 		StringBuilder str2 = new StringBuilder();
 		str2.append("%");
 		str2.append(title);
 		str2.append("%");
-		System.out.println(str2.toString());
 		
 		addr = str1.toString();
 		title = str2.toString();
@@ -59,12 +57,10 @@ public class HospitalServiceImpl implements HospitalService {
 		str1.append("%");
 		str1.append(addr);
 		str1.append("%");
-		System.out.println(str1.toString());
 		StringBuilder str2 = new StringBuilder();
 		str2.append("%");
 		str2.append(title);
 		str2.append("%");
-		System.out.println(str2.toString());
 		
 		addr = str1.toString();
 		title = str2.toString();
@@ -92,21 +88,18 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public String saveFile(MultipartFile upfile, String savePath) {
-		// 저장 경로의 폴더 생성부
 				File folder = new File(savePath);
 
 				if (folder.exists() == false) {
 					folder.mkdirs();
 				}
 
-				System.out.println("savePath : " + savePath);
 
 				String originalFileName = upfile.getOriginalFilename();
 				String reNameFileName = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS"))
 						+ originalFileName.substring(originalFileName.lastIndexOf("."));
 				String reNamePath = savePath + "/" + reNameFileName;
 
-				// 업로드 된 파일 이름을 바꾸고, 실제 디스크에 저장하는 코드부
 				try {
 					upfile.transferTo(new File(reNamePath));
 				} catch (Exception e) {

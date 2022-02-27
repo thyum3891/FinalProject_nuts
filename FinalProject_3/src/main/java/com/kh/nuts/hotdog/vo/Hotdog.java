@@ -19,5 +19,9 @@ public class Hotdog {
 	String re_filename;// 파일명_변경
 	String write_date;// 작성일
 	String write;// 작성자
+	String nick_name;
+	String profile;
+	String kakao;
+	int count;
 
 }
