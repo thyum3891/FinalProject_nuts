@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<!-- 실질적인 SQL이 들어가는 Mapper -->
 <mapper namespace="com.kh.nuts.park.mapper.ParkMapper">
-
+	<resultMap type="Park" id="parkListResultMap">
+		<result property="manageNo" column="MANAGENO"/>
+		<result property="parkNm" column="PARKNM"/>
+		<result property="lnmadr" column="INMADR"/>
+		<result property="rdnmadr" column="RDNMADR"/>
+		<result property="latitude" column="LATITUDE"/>
+		<result property="longitude" column="LONGITUDE"/>
+		<result property="parkAr" column="PARKAR"/>
+		<result property="institutionNm" column="INSTITUTIONNM"/>
+		<result property="phoneNumber" column="PHONENUMBER"/>
+		<result property="referenceDate" column="REFERENCEDATE"/>
+		<result property="insttCode" column="INSTTCODE"/>
+	</resultMap>
+	
+	<select id="selectParkList" resultType="Park" parameterType="map">
+		SELECT *
+		FROM PARK P
+			WHERE (p.inmadr LIKE '%' || #{addr} || '%'
+            OR p.RDNMADR LIKE '%' || #{addr} || '%')
+			AND (P.inmadr LIKE '%서울%'
+            OR p.RDNMADR LIKE '%서울%')
+			AND P.PARKNM IS NOT NULL
+			AND P.INMADR IS NOT NULL
+			AND P.PHONENUMBER IS NOT NULL
+			AND P.latitude IS NOT NULL
+			AND P.longitude IS NOT NULL
+	</select>
+	
+	<select id="selectParkCount" resultType="_int" parameterType="map">
+		SELECT COUNT(*)
+		FROM PARK P
+			WHERE P.MANAGENO LIKE '%' || #{addr} || '%'
+			AND P.PARKNM IS NOT NULL
+			AND P.INMADR IS NOT NULL
+			AND P.PHONENUMBER IS NOT NULL
+			AND P.latitude IS NOT NULL
+			AND P.longitude IS NOT NULL
+	</select>
+	
+	
+	
 	
 	<insert id="insertPark" parameterType="Park">
 		INSERT INTO PARK VALUES(

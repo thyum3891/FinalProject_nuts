@@ -14,12 +14,18 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Override
 	public List<Shop> shopListByMain() {
-		List<Shop> resultList = sp.passing("10");
-		int index = resultList.size();
 		
-		for(int i=4; i<index;i++) {
-			resultList.remove(i);
+		List<Shop> resultList = null;
+		List<Shop> shopList = sp.passing("20","반려견용품");
+		
+		if(shopList.size() > 4) {
+		resultList = shopList.subList(0, 4);
+		}else {
+			resultList = shopList;
 		}
+		
+		
+		
 		
 		
 		return resultList;

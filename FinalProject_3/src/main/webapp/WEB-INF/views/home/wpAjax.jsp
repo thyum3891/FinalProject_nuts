@@ -8,8 +8,8 @@
 
 
 <div class="section section-lg pt-0">
-	<div class="container mt-n12 ">
-		<div class="flex-container">
+	<div class="container mt-n12  ">
+		<div class="flex-container blog-prc">
 			<img src="${path}/resources/images/caret-up-fill.svg" width="50px"
 				alt="" onclick="scrollUp()" style="cursor: pointer;"
 				class="scrollBtn"> <img

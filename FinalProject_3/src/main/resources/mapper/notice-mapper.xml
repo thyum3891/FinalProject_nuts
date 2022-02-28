@@ -4,24 +4,82 @@
 <!-- 실질적인 SQL이 들어가는 Mapper -->
 <mapper namespace="com.kh.nuts.notice.mapper.NoticeMapper">
 
+<select id="selectNoticeList" resultType="Notice" parameterType="map">
+		SELECT  N.*, m.nick_name, m.profile_re_name profile
+		FROM notice N
+		JOIN MEMBER M ON(N.WRITER = M.ID)
+		WHERE 1=1
+		<if test="quary!=null">
+			AND N.TITLE = '%'||#{quary}||'%'
+		</if>
+		<if test="date!=null">
+			AND (N.WRITE_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+ 0.99999)
+		</if> 
+		ORDER BY N.NOTICE_NO DESC
+	</select>
 	
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(
-			#{id},#{password},#{name},#{age},#{gender},
-			#{phone},#{address},#{email},
-			)
+	<select id="selectNoticeCount" resultType="_int">
+		SELECT  COUNT(*)
+		FROM notice N
+		JOIN MEMBER M ON(N.WRITER = M.ID)
+		WHERE 1=1
+		<if test="quary!=null">
+			AND N.TITLE = '%'||#{quary}||'%'
+		</if>
+		<if test="date!=null">
+			AND (N.WRITE_DATE BETWEEN TO_DATE(#{date}) AND TO_DATE(#{date})+ 0.99999)
+		</if> 
+	</select>
+	
+	<select id="selectNoticeByNo" parameterType="string" resultType="Notice">
+ 		SELECT N.*, m.nick_name, m.profile_re_name profile
+		FROM notice N
+		JOIN MEMBER M ON(N.WRITER = M.ID)
+		WHERE N.NOTICE_NO=#{notice_no}
+	</select>
+	
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO Notice (
+			NOTICE_NO,
+			TITLE,
+			CONTENT,
+			FILENAME,
+			RE_FILENAME,
+			WRITE_DATE,
+			WRITER
+		) VALUES (
+			SEQ_Notice_NO.NEXTVAL,
+			#{title},
+			#{content},
+			#{filename},
+			#{re_filename},
+			SYSDATE,
+			#{writer}
+		)
 	</insert>
 	
-	<select id="selectMemberAll" >
-		SELECT * FROM MEMBER
-	</select>
+	<update id="updateNotice" parameterType="Notice">
+		UPDATE NOTICE
+		SET
+			CONTENT=#{content},
+			
+			
+			<if test="filename != null">
+				FILENAME=#{filename},
+			</if>
+			<if test="re_filename != null">
+				RE_FILENAME=#{re_filename},
+			</if>
+			TITLE=#{title}
+		WHERE
+			NOTICE_NO=#{notice_no}
+	</update>
 	
-	<select id="selectMemberById" parameterType="string" >
-		SELECT * FROM MEMBER WHERE ID = #{id}
-	</select>
+	
+	<delete id="deleteNotice" parameterType="string">
+		DELETE FROM NOTICE WHERE NOTICE_NO = #{notice_no}
+	</delete>
+	
 
-	<delete id="deleteMember" parameterType="string">
-		DELETE FROM MEMBER WHERE ID = #{id}
-	</delete>	
 
 </mapper>

@@ -17,6 +17,9 @@
 							 <c:if test="${req.profile != null}">
 								<img src="${path}/resources/upload/member/${req.profile}" width="50px" height="50px"  class="rounded-circle border-white">
 							</c:if>
+							 <c:if test="${req.profile == null}">
+								<img src="${path}/resources/images/nuts_logo.png" width="50px" height="50px"  class="rounded-circle border-white">
+							</c:if>
 						</td>
 						<td style="text-align: center">${req.nick_name }</td>
 						<td style="text-align: center;width: 130px"> 

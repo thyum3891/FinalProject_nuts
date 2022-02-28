@@ -190,6 +190,7 @@ public class HotdogController {
 			Hotdog hotdog = service.selectHotdogDetail(hot_no);
 			model.addAttribute("hotdog",hotdog);
 			
+			System.out.println(hotdog.getRe_filename());
 			if(hotdog.getRe_filename() != null) {
 				List<String> fileList = Arrays.asList(hotdog.getRe_filename().replaceAll("\\[", "").replaceAll("\\]", "").split(", "));
 				model.addAttribute("fileList",fileList);

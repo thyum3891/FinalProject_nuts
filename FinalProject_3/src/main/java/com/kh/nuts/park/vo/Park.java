@@ -13,8 +13,8 @@ import lombok.ToString;
 public class Park {
 	String manageNo; // 관리번호
 	String parkNm; // 공원명
-	String lnmadr; // 소재지 지번 주소
 	String rdnmadr; // 소재지도로명주소
+	String inmadr;
 	String latitude; // 위도
 	String longitude; // 경도
 	String parkAr; // 공원면적

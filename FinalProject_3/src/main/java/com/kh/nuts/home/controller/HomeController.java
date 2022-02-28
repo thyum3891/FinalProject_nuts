@@ -12,7 +12,9 @@ import com.kh.nuts.common.util.PageInfo;
 import com.kh.nuts.hospital.service.HospitalService;
 import com.kh.nuts.hospital.vo.Hospital;
 import com.kh.nuts.hotdog.service.HotdogService;
+import com.kh.nuts.hotdog.vo.Hotdog;
 import com.kh.nuts.notice.service.NoticeService;
+import com.kh.nuts.notice.vo.Notice;
 import com.kh.nuts.park.service.ParkService;
 import com.kh.nuts.shop.service.ShopService;
 import com.kh.nuts.shop.vo.Shop;
@@ -44,6 +46,8 @@ public class HomeController {
 	public String main(Model model) {
 		
 		List<Hospital> hospList = null;
+		List<Notice> noticeList = null;
+		List<Hotdog> hotdogList = null;
 		int count = hpService.selectCountbyHospital("", "");
 		System.out.println(count);
 		PageInfo pageInfo = new PageInfo(1, 1, count, 6);
@@ -54,6 +58,15 @@ public class HomeController {
 		
 		List<Shop> shopList = shopService.shopListByMain();
 		model.addAttribute("shopList", shopList);
+		
+		pageInfo = new PageInfo(1, 1, count, 5);
+		
+		noticeList = noticeService.getNoticeList(pageInfo, null, null);
+		System.out.println(noticeList);
+		model.addAttribute("noticeList", noticeList);
+		
+		hotdogList = hotdogService.selectHotdogList(pageInfo, "", "");
+		model.addAttribute("hotdogList", hotdogList);
 		
 		
 		return "home/homeView";

@@ -6,7 +6,7 @@
         <hr class="my-3 my-lg-5">
         <div class="container">
             <div class="row ml-6">
-                <img src="${path}/resources/images/nutslogo.svg" height="120" class="mb-3 mt-4">
+                <img src="${path}/resources/images/nutslogo2.svg" height="120" class="mb-3 mt-4">
 
                 <div class="col mb-5 mb-xl-0 ml-4">
                     <ul class="footer-links mt-4" style="color: #D0CECE;">

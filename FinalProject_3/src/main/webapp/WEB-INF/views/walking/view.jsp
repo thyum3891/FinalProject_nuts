@@ -12,8 +12,6 @@
 
   <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffea6673691d899c7b831444d7cf6ba1&libraries=services"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 
@@ -82,7 +80,7 @@ body, .fontJua {
 	
 <body>
 <main>
-<section class="section section-header pb-11" style="background-color: rgba(253, 225, 148,1)">
+<section class="section section-header pb-8" style="background-color: rgba(253, 225, 148,1)">
 			<div class="container">
 				<div class="row justify-content-between align-items-center">
 					<div
@@ -142,9 +140,13 @@ body, .fontJua {
 
 
 		</section>
+		<section class="section" style="height: 100%">
+		
 <div id= "view" class="" style="height: 100%">
 
 </div>
+		</section>
+		
 </main>
 		
 
@@ -196,12 +198,10 @@ function hrefWrite(){
 	<script
 		src="${path}/resources/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
 
-	<!-- Owl acrousel -->
+    <!-- Owl acrousel -->
+    <script src="${path}/resources/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
 
 
-
-	<script
-		src="${path}/resources/OwlCarousel2-2.3.4/src/js/owl.carousel.js"></script>
 
 	<!-- Smooth scroll -->
 	<script

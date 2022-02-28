@@ -3,6 +3,7 @@
 
 <!-- 실질적인 SQL이 들어가는 Mapper -->
 <mapper namespace="com.kh.nuts.hotdog.mapper.HotdogMapper">
+
 	<resultMap type="Hotdog" id="HotdogListResultMap">
 		<id property="no" column="NO"/>
 		<result property="hot_no" column="HOT_NO"/>
@@ -44,6 +45,7 @@
 		AND M.NICK_NAME LIKE '%'||#{nick_name}||'%'
 		ORDER BY WRITE_DATE DESC
 	</select>
+	
 	<select id="selectHotdogDetail" resultType="Hotdog" parameterType="string">
 		SELECT  H.HOT_NO,
 				H.TITLE, 

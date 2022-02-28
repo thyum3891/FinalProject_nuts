@@ -191,7 +191,7 @@
 	                <c:if test="${ pageInfo.currentPage != status.current}">
 	                	<li class="page-item font-jua "><a class="page-link " 
 	                	href="${ path }/hotdog/list?pageStr=${status.current}&nick_name=${nick_name}&title=${title}"
-	                	>2</a></li>
+	                	>${status.current}</a></li>
 	                </c:if>
                 </c:forEach>
                 <li class="page-item ">

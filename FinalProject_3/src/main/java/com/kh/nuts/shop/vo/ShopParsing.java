@@ -72,7 +72,7 @@ import java.util.Map;
 	        }
 	    }
 	    
-	    public List<Shop> passing(String display) {
+	    public List<Shop> passing(String display, String query) {
 	    	
 	    	String clientId = "4BZohPFKsut7txhjOW2T";
 	        String clientSecret = "EGh4XdNsa5"; 
@@ -80,7 +80,7 @@ import java.util.Map;
 
 	        String text = null;
 	        try {
-	            text = URLEncoder.encode("애견 산책", "UTF-8");
+	            text = URLEncoder.encode(query, "UTF-8");
 	        } catch (UnsupportedEncodingException e) {
 	            throw new RuntimeException("검색어 인코딩 실패",e);
 	        }
@@ -114,18 +114,30 @@ import java.util.Map;
 			List<Map<String, String>> jsonList = new ArrayList<Map<String, String>>(); 
 
 			for (int i = 0; i < rowDataArr.length; i++) {
-				Map<String, String> shoppingMap = new HashMap<String, String>(); 
+				Map<String, String> shoppingMap = new HashMap<String, String>();
+				boolean b = false;
 				for (int j = 0; j < rowDataArr[i].length; j++) {
 					String[] rowDataInfo = rowDataArr[i][j].split("\":");
-
-					shoppingMap.put(rowDataInfo[0].replaceAll("\"", "").strip(), rowDataInfo[1].replaceAll("\"", "").strip()); 
+					 b = rowDataInfo.length > 1;
+					if(b) {
+					shoppingMap.put(rowDataInfo[0].replaceAll("\"", "").strip(), rowDataInfo[1].replaceAll("\"", "").strip());
+					}
 				}
-				jsonList.add(shoppingMap); 
+				if(b) {
+				jsonList.add(shoppingMap);
+				}
 
 			}
 
 			for (int i = 0; i < jsonList.size(); i++) {
+				if(jsonList.get(i)==null) {
+					continue;
+				}
 				String productType = jsonList.get(i).get("productType");
+				
+				if(productType==null){
+					continue;
+				}
 				if(!productType.equals("1")){
 					continue;
 				}

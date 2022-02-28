@@ -9,11 +9,10 @@
 
 
 <div class="section section-lg pt-0">
-	<div class="container mt-n10 ">
+	<div class="container mt-n11 ">
 				<div class="row">
 			<div class="col-md-12 ">
-				<div id="listScroll" class="row"
-					style="">
+				<div id="listScroll" class="row" style="">
 					<c:forEach var="wp" items="${wpList}" varStatus="vs">
 						<!-- Item 1 -->
 						<div style="width: 363px; height: 658px; margin: 5px;" >
@@ -24,7 +23,7 @@
 										<td>
 											<div class="position-relative card p-2 rounded-xl">
 												<div id="pathMap${wp.party_no}"
-													style="width: 340px; height: 260px; overflow: hidden;cursor: pointer;" onclick="moveMap(new kakao.maps.LatLng${wp.pathOne})" disabled = "disabled">
+													style="width: 340px; height: 260px; cursor: pointer;" onclick="moveMap(new kakao.maps.LatLng${wp.pathOne})" disabled = "disabled">
 												</div>
 											</div>
 										</td>
@@ -138,7 +137,6 @@
 	</div>
 </div>
 
-</main>
 
 
 <input type="text" id="myLat" name="lng" hidden>

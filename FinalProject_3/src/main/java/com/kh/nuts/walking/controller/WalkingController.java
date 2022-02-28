@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.nuts.member.vo.Member;
 import com.kh.nuts.walking.service.WalkingService;
 import com.kh.nuts.walking.vo.WalkingParty;
 
@@ -29,14 +30,13 @@ public class WalkingController {
 	
 	@RequestMapping("/walking/create")
 	public String create(Model model, String pathAll, String pathOne, String distance, String estimated_time,
-			String contant, String startTime,String startDate,String memberId) {
+			String contant, String startTime,String startDate,String memberId, HttpSession session) {
 		
 		try {
 			
 			WalkingParty wp = new WalkingParty();
 			wp.setContant(contant);
-			wp.setWriter_id(memberId);
-//			wp.setWriter_id(((Member)session.getAttribute("member")).getId());
+			wp.setWriter_id(((Member)session.getAttribute("loginMember")).getId());
 			wp.setContant(contant);
 			wp.setDistance(distance);
 			wp.setEstimated_time(estimated_time);
@@ -79,8 +79,13 @@ public class WalkingController {
 	
 	
 	@RequestMapping("/walking/write")
-	public String walkingWrite(Model model) {
+	public String walkingWrite(Model model, HttpSession session) {
 		try {
+			if((Member)session.getAttribute("loginMember") == null) {
+				model.addAttribute("msg", "로그인 후 이용해주세요! ");
+				model.addAttribute("location", "/login");
+				return "common/msg";
+			}
 			
 			
 		} catch (Exception e) {

@@ -60,28 +60,20 @@
 <body>
 
     <main>
-        <div class="preloader bg-dark flex-column justify-content-center align-items-center">
-            <div class="position-relative">
-                <img src="${path}/resources/assets/img/brand/light-without-letter.svg" alt="Logo loader">
-                <img src="${path}/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
-            </div>
-        </div>
 
         <!-- Hero -->
-        <section class="section section-header bg pb-12">
+        <section class="section section-header bg pb-12" style="background-color: rgba(253, 225, 148,1)">
             <div class="container ">
                 <div class="row justify-content-between align-items-center">
                     <div class="col-12 col-md-5 order-lg-1 ">
                         <h4 class="display-4  mb-0 " style="text-align: center; color: #5E4D44;">오늘 당신의 산책메이트는<br> 누구인가요?<br></h4>
                         <br>
-                        <form autocomplete="off" class="row" method="get" action="./all-spaces.html">
                             <div class="col-12 mt-4">
-                                <button class="btn btn-lg btn-primary btn-block animate-up-2 font-medium border-0" style="background-color: #a38778; " type="submit">내 주변 공원 찾기</button>
+                                <button class="btn btn-lg btn-primary btn-block animate-up-2 font-medium border-0" style="background-color: #a38778; " type="button" onclick="location.href='${path}/park/list'">내 주변 공원 찾기</button>
                             </div>
                             <div class="col-12 mt-4">
-                                <button class="btn btn-lg btn-primary btn-block animate-up-2 font-medium border-0" style="background-color: #5E4D44;" type="submit">내 위치로 산책 메이트 찾기</button>
+                                <button class="btn btn-lg btn-primary btn-block animate-up-2 font-medium border-0" style="background-color: #5E4D44;" type="button" onclick="location.href='${path}/walking/view'">내 위치로 산책 메이트 찾기</button>
                             </div>
-                        </form>
                     </div>
                     <div class="col-12 col-md-7 order-lg-2 d-none d-md-block">
                         <!-- Image --><img src="${path}/resources/images/main.png" class="img-fluid" alt="Forest Illustration">
@@ -89,7 +81,7 @@
                 </div>
             </div>
         </section>
-<div id="wp" class="blog-prc mt-n4 mb-n4" style="height: 843px">
+<div id="wp" class="mt-n6 mb-n8 blog-prc" style="height: 843px">
        
       </div>
         <section class="section section-lg pt-0 ">
@@ -105,29 +97,30 @@
                         <div class="form-row ">
                             <div class="col-4 ">
                                 <!-- Card -->
-                                <a href="./all-spaces.html " class="card img-card fh-170 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path}/resources/assets/img/newyork.jpg ">
+                                <a href="http://localhost/nuts/park/best?no=1" class="card img-card fh-170 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path }/resources/images/보라매공원.png">
                                     <div class="inner-bg overlay-github "></div>
                                     <div class="card-img-overlay d-flex align-items-center ">
                                         <div class="card-body text-white p-3 " }>
                                             <h5 class="text-uppercase text-center ">보라매 공원</h5>
                                         </div>
                                     </div>
+                                   
                                 </a>
                                 <!-- End of Card -->
                             </div>
                             <div class="col-3 ">
                                 <!-- Card -->
-                                <a href="./all-spaces.html " class="card img-card fh-80 border-0 outer-bg mb-2 " style="border-radius: 20px;" data-background-inner="${path}/resources/assets/img/paris.jpg ">
+                                <a href="http://localhost/nuts/park/best?no=2" class="card img-card fh-80 border-0 outer-bg mb-2 " style="border-radius: 20px;" data-background-inner="${path }/resources/images/노을공원.png ">
                                     <div class="inner-bg overlay-github "></div>
                                     <div class="card-img-overlay d-flex align-items-center ">
                                         <div class="card-body text-white p-3 ">
-                                            <h6 class="text-center mb-1 ">선유도 공원</h6>
+                                            <h6 class="text-center mb-1 ">노을 공원</h6>
                                         </div>
                                     </div>
                                 </a>
                                 <!-- End of Card -->
                                 <!-- Card -->
-                                <a href="./all-spaces.html " class="card img-card fh-80 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path}/resources/assets/img/paris.jpg ">
+                                <a href="http://localhost/nuts/park/best?no=4" class="card img-card fh-80 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path }/resources/images/선유도공원.png">
                                     <div class="inner-bg overlay-github "></div>
                                     <div class="card-img-overlay d-flex align-items-center ">
                                         <div class="card-body text-white p-3 ">
@@ -141,7 +134,7 @@
                                 <div class="form-row mb-2 ">
                                     <div class="col-5 ">
                                         <!-- Card -->
-                                        <a href="./all-spaces.html " class="card img-card fh-170 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path}/resources/assets/img/tokyo.jpg ">
+                                        <a href="http://localhost/nuts/park/best?no=3" class="card img-card fh-170 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path }/resources/images/서울숲공원.png  ">
                                             <div class="inner-bg overlay-github "></div>
                                             <div class="card-img-overlay d-flex align-items-center ">
                                                 <div class="card-body text-white p-3 ">
@@ -153,7 +146,7 @@
                                     </div>
                                     <div class="col-7 ">
                                         <!-- Card -->
-                                        <a href="./all-spaces.html " class="card img-card fh-170 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path}/resources/assets/img/london.jpg ">
+                                        <a href="http://localhost/nuts/park/best?no=5" class="card img-card fh-170 border-0 outer-bg " style="border-radius: 20px;" data-background-inner="${path }/resources/images/한강공원.png">
                                             <div class="inner-bg overlay-github "></div>
                                             <div class="card-img-overlay d-flex align-items-center ">
                                                 <div class="card-body text-white p-3 ">
@@ -188,7 +181,7 @@
                                         <span class="font-weight-bold ">후기</span>가 좋은 <span class="font-weight-bold ">동물병원</span>을 알려드릴게요!
                                     </p>
                                     <br>
-                                    <div class="row mb-4 list-group mb-3" style="height: 150px">
+                                    <div class="row mb-4 list-group mb-3" style="height: 130px">
                                     	<c:forEach var="hp" items="${hospList}">
                                                 <a  class="font-medium text-gray p-0 mb-3 "><span onclick="OnClickList('${hp.venue}')" class="fas fa-map-marker-alt mr-2 ">${hp.title}</span></a>
                                     	
@@ -234,7 +227,7 @@
                     
                     </div>
                     <br>
-                 	<a href="${path}/hospital/view">더 찾아보기<span class="fas fa-arrow-right fa-xs ml-2 "></span></a>
+                 	<a href="${path}/shop/search">더 찾아보기<span class="fas fa-arrow-right fa-xs ml-2 "></span></a>
                     
                     
                  
@@ -257,31 +250,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<c:forEach var="notice" items="${noticeList}">
                                         <tr>
-                                            <td>5</td>
-                                            <td><a href="# ">교환 / 환불 규정</a></td>
-                                            <td>21-12-26</td>
+                                            <td>${notice.notice_no }</td>
+                                            <td><a href="${path }/notice/view?notice_no=${notice.notice_no} ">${notice.title }</a></td>
+                                            <td>${fn:substring(notice.write_date,0,10)}</td>
                                         </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td><a href="# ">산책로 그리기</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><a href="# ">리뷰 등록</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a href="# ">배송 지연 안내</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="# ">공지사항</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
+                                        
+                                    	</c:forEach>
+                                        
                                     </tbody>
                                 </table>
 
@@ -312,31 +289,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    	<c:forEach var="hotdog" items="${hotdogList}">
                                         <tr>
-                                            <td>5</td>
-                                            <td><a href="# ">귀여운 동훈이의 행방</a></td>
-                                            <td>21-12-26</td>
+                                            <td>${hotdog.hot_no }</td>
+                                            <td><a href="${path }/hotdog/detail?hot_no=${hotdog.hot_no} ">${hotdog.title }</a></td>
+                                            <td>${fn:substring(hotdog.write_date,0,10)}</td>
                                         </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td><a href="# ">한복입은 동훈이의 세배</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td><a href="# ">동훈이 오래도록 건강해</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td><a href="# ">산책하기 싫은 동훈이</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="# ">동훈이 최고 큐티뽀짝</a></td>
-                                            <td>21-12-26</td>
-                                        </tr>
+                                    	</c:forEach>
+                                       
                                     </tbody>
                                 </table>
 

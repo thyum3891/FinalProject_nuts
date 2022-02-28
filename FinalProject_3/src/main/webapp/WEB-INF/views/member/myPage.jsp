@@ -67,7 +67,7 @@
 								<div
 									class="card mt-0 d-none d-lg-block border-light text-center p-2">
 									<div class="profile-cover rounded-top"
-										style="background-color: yellow;"></div>
+										style="background-image: url('${path}/resources/images/profilebg1.png')"></div>
 									<div class="card-body p-2">
 										<div class="profile-thumbnail mt-n7 mx-auto card-img-top rounded-circle " style="background-color: white" >
 											<img
@@ -181,8 +181,14 @@
 									<div class="item">
 										<div class="card border-light text-center">
 											<div class="profile-thumbnail mx-auto mt-3">
+											<c:if test="${partner.profile != null }">
 												<img src="${path}/resources/upload/member/${partner.profile}" class="card-img-top rounded-circle border-0"
 													alt="Jose Avatar">
+											</c:if>
+											<c:if test="${partner.profile == null }">
+												<img src="${path}/resources/images/nuts_logo.png" class="card-img-top rounded-circle border-0"
+													alt="Jose Avatar">
+											</c:if>
 											</div>
 											<div class="card-body">
 												<h2 class="h4 card-title mb-2">${partner.nick_name}</h2>
