@@ -79,13 +79,14 @@
 
            <!-- 인기상품 리스트 시작 -->
                    
-			<c:forEach var="item" items="${best}" varStatus="vs">
+			         <c:forEach var="item" items="${best}" varStatus="vs">
             <div class="col ">
                 <div class="col mt-5">
                 <c:if test="${vs.first}">
                  <a class="py-4 ml-2 font-medium" style="color: #5E4D44;">인기상품</a>
                 </c:if>
                 <c:if test="${!vs.first}">
+                <a class="py-4 ml-2 font-medium" style="color: #ffffff;">인기상품</a>
                     <a class="py-4 ml-2 font-medium"></a>
                 </c:if>
 
@@ -98,7 +99,7 @@
                                     </a>
 
                                     <ul class="list-group mt-1 mb-2">
-                                        <li class="list-group-item small p-0 text-surroundAir" style="text-align: center; color: #BA9F81; height: 40px;">${item.title}</li>
+                                        <li class="list-group-item small p-0 text-surroundAir" style="text-align: center; color: #BA9F81; height: 40px;">${item.title}</li><br>
                                         <li class="list-group-item small p-0 text-surroundAir" style="text-align: center; color: #5E4D44;">${item.lprice}원</li>
                                     </ul>
                                 </div>
@@ -107,8 +108,9 @@
                     </div>
                 </div>
             </div>
-			</c:forEach>
+         </c:forEach>
         </div> 
+
         <!-- 인기상품 리스트 끝-->
 
         <!-- 검색 리스트 시작 -->

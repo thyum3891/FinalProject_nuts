@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="slideform-group col-12">
-                                    <textarea class="form-control my-3" placeholder="" id="notice_Textarea" name="content" rows="12" required></textarea>
+                                    <textarea class="form-control my-3" placeholder="" id="notice_Textarea" name="content" rows="12" required>${notice.content }</textarea>
                                 </div>
                                 <input type="text" value="${loginMember.id}" name="writer" hidden>
                                 <input type="text" value="${notice.notice_no}" name="notice_no" hidden>
@@ -89,7 +89,7 @@
                 <div class="row ">
                     <div class="col-12 d-flex justify-content-center">
                         <button class="btn mx-2 px-6 btn-dark mt-4 animate-up-2" type="submit">수정하기</button>
-                        <button class="btn mx-2 px-6 btn-dark mt-4 animate-up-2" type="location.href ='${path}/notice/delete?notice_no=${notice.notice_no }'">삭제하기</button>
+                        <button class="btn mx-2 px-6 btn-dark mt-4 animate-up-2" type="button" onclick="location.href ='${path}/notice/delete?notice_no=${notice.notice_no }'">삭제하기</button>
                     </div>
                     <div class="col-12 mb-5 d-block d-flex justify-content-center mt-4">
                         <a href="${path }/notice/list" style="color : #977d6f;">목록으로</a>

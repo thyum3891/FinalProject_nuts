@@ -61,7 +61,7 @@ public class WalkingController {
 				}else {
 					model.addAttribute("msg", "등록에 실패하였습니다.");
 				}
-				model.addAttribute("location", "/walking/write");
+				model.addAttribute("location", "/walking/view");
 			}
 			
 			
@@ -124,12 +124,11 @@ public class WalkingController {
 			reqStr = service.selectReqNo();
 			System.out.println(reqStr);
 			if(searchDate == null||searchDate.equals("")||searchDate.length() < 1) {
-				System.out.println("셀렉트 올");
+				System.out.println(writerName);
 				wpList = service.selectAll(lat, lon, writerName);
 				model.addAttribute("date","");
 				model.addAttribute("nickName","");
 			}else {
-				System.out.println("셀렉트 서치");
 				wpList = service.selectSearch(lat,lon, searchDate, writerName);
 			}
 			System.out.println(writerName);

@@ -154,7 +154,7 @@
                 </c:if>
                 <c:if test="${loginMember == null }">
 	                <div class="d-none d-lg-block">
-                    <a href="${path }/login" target="_blank" class="btn btn-md btn-nuts animate-up-2 mr-3" style="background-color: #5E4D44; height: 45px;">
+                    <a href="${path }/login" class="btn btn-md btn-nuts animate-up-2 mr-3" style="background-color: #5E4D44; height: 45px;">
                         <span class="d-none d-xl-inline font-medium" style="color: white;">로그인</span>
                     </a>
                 </div>

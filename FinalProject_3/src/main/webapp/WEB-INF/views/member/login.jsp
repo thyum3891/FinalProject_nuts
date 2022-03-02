@@ -61,7 +61,7 @@
             <section class="min-vh-100 d-flex align-items-center section-image  py-5 py-lg-0">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-12">
+                        <div class="col-12" style="margin-top: 200px">
                             <div class="text-center text-md-center mb-4 mt-md-0 text-white">
                                 <h1 class="mb-0 h3">견 과 류</h1>
                             </div>
@@ -97,7 +97,7 @@
                                 </form>
                                 <div class="d-block d-sm-flex justify-content-center align-items-center " style="margin-top: 10px;">
                                     <span class="font-weight-normal"> 
-                                    <a href="${path}/member/enroll" class="font-weight-bold">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="${path}/member/enroll" class="font-weight-bold">회원가입</a>
                                 </span>
                                 </div>
                             </div>

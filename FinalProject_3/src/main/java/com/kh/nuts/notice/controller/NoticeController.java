@@ -56,7 +56,6 @@ public class NoticeController {
 		}
 		PageInfo pageInfo = new PageInfo(page, 5, service.getNoticeCount(quary, date), 10);
 		List<Notice> list = service.getNoticeList(pageInfo, quary, date);
-		System.out.println(list);
 
 		model.addAttribute("list", list);
 		model.addAttribute("pageInfo", pageInfo);
@@ -67,7 +66,6 @@ public class NoticeController {
 	@GetMapping("/view")
 	public String view(Model model, String notice_no) {
 		Notice notice = service.findByNo(notice_no);
-		System.out.println();
 		model.addAttribute("notice", notice);
 
 		return "/notice/view";

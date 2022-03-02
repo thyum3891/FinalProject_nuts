@@ -13,6 +13,7 @@ public interface WalkingMapper {
 	
 	List<WalkingParty> selectWalkingPartyAll(@Param("id") String writer_id);
 	List<WalkingParty> selectMyParty(@Param("id") String writer_id);
+	List<WalkingParty> selectReqParty(@Param("id") String writer_id);
 	List<WalkingParty> selectWalkingPartySearch(@Param("date") String searchDate, @Param("id") String writer_id);
 	List<WalkingRequest> selectWalkingReq();
 	List<WalkingRequest> selectReqIdInfo(@Param("party_no") String party_no);
@@ -24,4 +25,5 @@ public interface WalkingMapper {
 	int partyReqUdate(@Param("req_no")String req_no,@Param("stat")String stat);
 	int partyStatUdate(@Param("party_no") String party_no);
 	int ReqCount(@Param("party_no") String party_no);
+	int deleteReq(@Param("wr_no")String wr_no);
 }

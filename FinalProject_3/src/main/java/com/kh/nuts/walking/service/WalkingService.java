@@ -11,6 +11,7 @@ public interface WalkingService {
 	List<WalkingParty> selectAll(String lat, String lng, String id);
 	List<WalkingParty> selectAll(String id);
 	List<WalkingParty> selectMyParty(String writer_id);
+	List<WalkingParty> selectReqParty(String writer_id);
 	List<WalkingParty> selectSearch(String lat, String lng, String searchDate, String writer_id);
 	List<WalkingParty> selectSearch(String searchDate, String writer_id);
 	int insertWorkingParty(WalkingParty workingParty);

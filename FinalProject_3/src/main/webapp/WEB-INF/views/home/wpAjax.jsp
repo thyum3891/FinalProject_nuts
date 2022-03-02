@@ -55,15 +55,6 @@
 												</span>${wp.nick_name}
 										</h4>
 									<div class="d-flex my-4">
-										<c:forEach begin="1" end="${wp.avg/1}">
-											<span class="star fas fa-star text-warning"></span>
-										</c:forEach>
-
-										<c:if test="${(wp.avg/0.5)%2 >= 1}">
-											<span class="fas fa-star-half text-warning"></span>
-										</c:if>
-
-										<span class="badge badge-pill badge-primary ml-2">${wp.avg}</span>
 									</div>
 									<ul class="list-group mb-3  ">
 										<li id="detailAddr${wp.party_no }"

@@ -139,6 +139,11 @@ public class WalkingServiceImpl implements WalkingService {
 	public List<WalkingParty> selectMyParty(String writer_id) {
 		return mapper.selectMyParty(writer_id);
 	}
+	@Override
+	public List<WalkingParty> selectReqParty(String writer_id) {
+		System.out.println(writer_id);
+		return mapper.selectReqParty(writer_id);
+	}
 
 	@Override
 	public List<WalkingRequest> selectReqIdInfo(String party_no) {
@@ -148,6 +153,10 @@ public class WalkingServiceImpl implements WalkingService {
 
 	@Override
 	public boolean partyReqUdate(String req_no, String stat) {
+		if(stat.equals("취소")) {
+			return mapper.deleteReq(req_no)>0;
+		}
+		
 		
 		return mapper.partyReqUdate(req_no, stat)>0;
 	}

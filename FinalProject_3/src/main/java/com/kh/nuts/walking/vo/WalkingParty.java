@@ -27,5 +27,6 @@ public class WalkingParty {
 	String nick_name; // 상태
 	String profile;
 	double avg; // 상태
+	String req_stat;
 
 }

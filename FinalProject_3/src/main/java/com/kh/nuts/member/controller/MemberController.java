@@ -160,13 +160,16 @@ public class MemberController {
 	@RequestMapping("/myPage")
 	public String myPage(Model model,HttpSession session) {
 		List<WalkingParty> wpList = null;
+		List<WalkingParty> reqList = null;
 		List<WalkingRequest> partnerList = null;
 		try {
 			Member loginId = (Member)session.getAttribute("loginMember");
 			
 			if(loginId != null) {
 				wpList = wpService.selectMyParty(loginId.getId());
+				reqList = wpService.selectReqParty(loginId.getId());
 				model.addAttribute("wpList", wpList);
+				model.addAttribute("reqList", reqList);
 				partnerList = wpService.selectWalkingPartner(loginId.getId());
 				model.addAttribute("partnerList", partnerList);
 			}else {

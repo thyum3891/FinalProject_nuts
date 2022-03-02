@@ -155,7 +155,7 @@
 					<div class="card border-primary mb-4 ">
 						<div class="">
 							<div class="" >
-								<table class="table card-body" style=" width: 580px  ;margin: auto" >
+								<table class="table card-body" style=" width: auto  ;margin: auto" >
 									<thead>
 										<tr scope="col " class="text-center font-base"
 											style="color: #BA9F81;">
@@ -283,7 +283,7 @@
                      var content${hp.rnum} = '<div class="bubble overflow-hidden"  >'+
                    	'<div class="row">'+
                    	
-                   	'<table class="text-surroundAir"> '+
+                   	'<table class="text-surroundAir" style="width:300px"> '+
      	              	'<tr>'+
      	              		'<th colspan="3">'+
      	              			'${hp.title}'+
@@ -291,11 +291,11 @@
      	              		'</th>'+
      	              	'</tr>'+
      	              	'<tr>'+
-     		              	'<td>'+
+     		              	'<td style="width:80px">'+
      		              		'전화번호'+
      		              	'</td>'+
      		              	'<td>'+
-     		              	'<br>:<br>'+
+     		              	':'+
      		              	'</td>'+
      		              	'<td>'+
      		              		'${hp.reference}'+
@@ -306,7 +306,7 @@
      		              		'주소'+
      		              		'</td>'+
      		              		'<td>'+
-     		              			'<br>:<br>'+
+     		              			':'+
      		              		'</td>'+
      		              		'<td>'+
      		              			'${hp.venue}'+

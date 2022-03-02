@@ -49,19 +49,14 @@
 <body>
     <main>
 
-        <div class="preloader bg-dark flex-column justify-content-center align-items-center">
-            <div class="position-relative">
-                <img src="${path}/resources/assets/img/brand/light-without-letter.svg" alt="Logo loader">
-                <img src="${path}/resources/assets/img/brand/letter.svg" class="rotate-letter" alt="Letter loader">
-            </div>
-        </div>
+    
 
         <!-- Section -->
         <div style="background: linear-gradient(to bottom, #BA9F81 55%, white 45%); margin-bottom: 100px;">
             <section class="min-vh-100 d-flex align-items-center section-image  py-5 py-lg-0">
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-12" style="margin-top: 100px;">
+                        <div class="col-12" style="margin-top: 200px;">
                             <div class="text-center text-md-center  mt-md-0 mb-4 text-white">
                                 <h1 class="mb-0 h3 ">견과류</h1>
                             </div>

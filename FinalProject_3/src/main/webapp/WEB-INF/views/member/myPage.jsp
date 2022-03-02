@@ -72,12 +72,12 @@
 										<div class="profile-thumbnail mt-n7 mx-auto card-img-top rounded-circle " style="background-color: white" >
 											<img
 												src="${path}/resources/upload/member/${loginMember.profile_re_name}"
-												height="200px" width="200px"
+												height="160px" width="160px"
 												class="card-img-top rounded-circle border-white">
 										</div>
 										<br>
 										<h4 class="font-weight-normal mt-4 mb-0">${loginMember.nick_name}</h4>
-										<br> <a href="${path }/member/enroll" class="btn btn-sm btn-primary mb-3">프로필
+										<br> <a href="${path }/member/enroll" class="btn btn-sm btn-primary mb-3" style="color: white ;background-color:  #5E4D44 ;">프로필
 											수정</a>
 									</div>
 								</div>
@@ -89,9 +89,11 @@
 
 					<!--  ---------------------------------------------------------------------------------------------------------------------------------------------- -->
 					<div class="col-12 col-lg-8">
+					<c:if test="${wpList!=null}">
 						<div>
-							<h5>다녀온 산책</h5>
+							<h5>내가 만든 산책</h5>
 						</div>
+					</c:if>
 						<div class="container ">
 							<div class="row">
 								<c:forEach var="wp" items="${wpList}" varStatus="vs">
@@ -118,7 +120,7 @@
 											<div
 												class=" col mt-lg-0 mt-5 pt-3 d-flex flex-column text-center">
 												<div>
-													<a id="bellBtn${wp.party_no}" onclick="block${wp.party_no}()" class="btn btn-primary animate-up-2 mb-2" style="color: white">
+													<a id="bellBtn${wp.party_no}" onclick="block${wp.party_no}()" class="btn btn-primary animate-up-2 mb-2" style="color: white ; background-color:  #5E4D44 ;">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 															 fill="currentColor" class="bi bi-bell-fill"
 															 viewBox="0 0 16 16">
@@ -126,7 +128,7 @@
 														</svg>
 													</a> 
 															
-															<a onclick="partyStatUpdate('${wp.party_no}')" class="btn btn-primary animate-up-2 mb-2">마감</a>
+															<a onclick="partyStatUpdate('${wp.party_no}')" class="btn btn-primary animate-up-2 mb-2" style="color: white ;background-color:  #5E4D44 ;">마감</a>
 												</div>
 											</div>
 										</div>
@@ -171,9 +173,103 @@
 
 							</div>
 						</div>
+						<c:if test="${reqList!=null}">
+						
 						<div>
-							<h5>지난 산책 메이트</h5>
+							<h5>참여한 산책</h5>
 						</div>
+						</c:if>
+						<div class="container ">
+							<div class="row">
+								<c:forEach var="wp" items="${reqList}" varStatus="vs">
+									<div class="item mx-1">
+										<div class="card border-light mb-4 m-1 animate-up-5 "
+											style="width: 226px; height: 380px;">
+											<div id="map${wp.party_no}" class="card-body ml-1"
+												style="height: 200px; width: 200px;"></div>
+											<div class="card-body">
+												<ul class="list-group mb-3">
+													<li class="list-group-item small p-0"><span
+														class="fas fa-bullseye mr-2"></span>${fn:substring(wp.start_date,0,10)}
+													</li>
+													<li class="list-group-item small p-0"><span
+														class="fas fa-bullseye mr-2"></span>시작시간 :${wp.start_time }</li>
+													<li class="list-group-item small p-0"><span
+														class="fas fa-bullseye mr-2"></span>예상소요시간 :
+														${wp.start_time }</li>
+													<li class="list-group-item small p-0"><span
+														class="fas fa-bullseye mr-2"></span>신청 현황 : 
+														<c:if test="${wp.req_stat.equals('수락')}">
+														
+														<b style="color: green">수락</b>
+														
+														</c:if>
+														<c:if test="${wp.req_stat.equals('확인 필요')}">
+														
+														<b style="color: red">확인 필요</b>
+														
+														</c:if>
+														
+														</li>
+												</ul>
+											</div>
+
+											<div
+												class=" col mt-lg-0 mt-5 pt-3 d-flex flex-column text-center">
+												<div>
+													<a onclick="reqUpdate('${wp.party_no}${loginMember.id}','취소')" class="btn btn-primary animate-up-2 mb-2" style="color: white ;background-color:  #5E4D44 ;">신청 취소</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<script>
+								var linePath${wp.party_no} = [
+									<c:forEach var="item"  items="${wp.pathAll}" varStatus="status">
+										new kakao.maps.LatLng( ${item} ) 
+										<c:if test="${!status.last}">,</c:if>
+									</c:forEach>
+								];
+								var mapNo = 'map${wp.party_no}';
+								mapSet(mapNo,linePath${wp.party_no});
+													
+								function mapSet(mapId, linePath) {
+									var mapContainer = document.getElementById(mapId), // 지도를 표시할 div 
+										mapOption = { 
+											center: new kakao.maps.LatLng(37.476748643175874, 126.96834471935132), // 지도의 중심좌표
+												level: 5 // 지도의 확대 레벨
+											};
+									
+									var map = new kakao.maps.Map(mapContainer, mapOption); 
+									var polyline = new kakao.maps.Polyline({
+										path: linePath, // 선을 구성하는 좌표배열 입니다
+										strokeWeight: 5, // 선의 두께 입니다
+										strokeColor: '#FFAE00', // 선의 색깔입니다
+										strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+										strokeStyle: 'solid' // 선의 스타일입니다
+										});
+									polyline.setMap(map);
+									var bounds = new kakao.maps.LatLngBounds();  
+									var i;
+									for(i =0;i<linePath.length;i++){
+										bounds.extend(linePath[i]);
+										}
+									map.setBounds(bounds);
+								    }
+
+							</script>
+								</c:forEach>
+
+							</div>
+						</div>
+						<c:if test="${partnerList != null}">
+						<script type="text/javascript">
+						console.log(partnerList != null);
+						</script>
+							<div>
+								<h5>지난 산책 메이트</h5>
+							</div>
+						</c:if>
 						<div class="container ">
 							<div class="row">
 								<div class="basic-carousel owl-carousel owl-theme">
@@ -195,7 +291,7 @@
 												<span class="card-subtitle text-gray font-weight-normal">
 												
 												<c:if test="${partner.kakao != null}">
-													<a  href="${partner.kakao}" class="btn btn-primary animate-up-2 mb-2" style="color: white">
+													<a  href="${partner.kakao}" class="btn btn-primary animate-up-2 mb-2" style="color: white ;background-color:  #5E4D44 ;">
 														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
   															<path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
 														</svg>
@@ -267,11 +363,9 @@
 				},
 				success: 
 				function(result) {
-					console.log(result);
 					$("#"+reqModalNo).html(result);
 				},
 				error: function(e) {
-					$("#"+reqModalNo).html(e);
 					console.log(e);
 				}
 			});

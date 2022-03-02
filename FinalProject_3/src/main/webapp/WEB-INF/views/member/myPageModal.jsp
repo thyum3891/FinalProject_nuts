@@ -9,7 +9,6 @@
 				<table style="align-content: center;">
 					<c:forEach var="req" items="${reqList}">
 					<script type="text/javascript">
-					console.log('${req}');
 
 					</script>
 					<tr>
@@ -23,8 +22,8 @@
 						</td>
 						<td style="text-align: center">${req.nick_name }</td>
 						<td style="text-align: center;width: 130px"> 
-							<a onclick="reqUpdate('${req.wr_no}','수락')" class="btn btn-sm btn-primary mb-3">수락</a>
-							<a onclick="reqUpdate('${req.wr_no}','거절')" class="btn btn-sm btn-primary mb-3">거절</a> 
+							<a onclick="reqUpdate('${req.wr_no}','수락')" class="btn btn-sm btn-primary mb-3" style="color:  white">수락</a>
+							<a onclick="reqUpdate('${req.wr_no}','거절')" class="btn btn-sm btn-primary mb-3" style="color:  white">거절</a> 
 						</td>
 					</tr>
 					
