@@ -140,7 +140,7 @@ body, .fontJua {
 
 
 		</section>
-		<section class="section" style="height: 100%">
+		<section class="section" style="height: 1350px">
 		
 <div id= "view" class="" style="height: 100%">
 
@@ -148,9 +148,9 @@ body, .fontJua {
 		</section>
 		
 </main>
-		
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>		
 
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
 
 <script type="text/javascript">
 mapQuery("", "");

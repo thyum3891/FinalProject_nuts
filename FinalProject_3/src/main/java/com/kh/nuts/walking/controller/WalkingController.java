@@ -21,7 +21,6 @@ import com.kh.nuts.walking.vo.WalkingParty;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Controller
 public class WalkingController {
 	
@@ -31,33 +30,41 @@ public class WalkingController {
 	@RequestMapping("/walking/create")
 	public String create(Model model, String pathAll, String pathOne, String distance, String estimated_time,
 			String contant, String startTime,String startDate,String memberId, HttpSession session) {
-		
+			
 		try {
-			
-			WalkingParty wp = new WalkingParty();
-			wp.setContant(contant);
-			wp.setWriter_id(((Member)session.getAttribute("loginMember")).getId());
-			wp.setContant(contant);
-			wp.setDistance(distance);
-			wp.setEstimated_time(estimated_time);
-			pathAll = pathAll.replaceAll("\\)\\,\\(","\\/").replaceAll("\\(", "").replaceAll("\\)", "");
-			System.out.println(pathAll.split("/"));
-			wp.setPathAll(pathAll.split("/"));
-			wp.setPathOne(pathOne);
-			wp.setStart_date(startDate);
-			wp.setStart_time(startTime);
-			
-			int result = service.insertWorkingParty(wp);
-			
-			System.out.println(wp);
-			System.out.println(result);
-			
-			if(result>0) {
-			model.addAttribute("msg", "모임이 등록되었습니다.");
+			Member loginId = (Member)session.getAttribute("loginMember");
+			if(loginId == null) {
+				model.addAttribute("msg", "로그인 후 이용해주세요");
+				model.addAttribute("location", "/login");
+				
 			}else {
-				model.addAttribute("msg", "등록에 실패하였습니다.");
+				WalkingParty wp = new WalkingParty();
+				wp.setContant(contant);
+				wp.setWriter_id(loginId.getId());
+				wp.setContant(contant);
+				wp.setDistance(distance);
+				wp.setEstimated_time(estimated_time);
+				pathAll = pathAll.replaceAll("\\)\\,\\(","\\/").replaceAll("\\(", "").replaceAll("\\)", "");
+				System.out.println(pathAll.split("/"));
+				wp.setPathAll(pathAll.split("/"));
+				wp.setPathOne(pathOne);
+				wp.setStart_date(startDate);
+				wp.setStart_time(startTime);
+				
+				int result = service.insertWorkingParty(wp);
+				
+				System.out.println(wp);
+				System.out.println(result);
+				
+				if(result>0) {
+				model.addAttribute("msg", "모임이 등록되었습니다.");
+				}else {
+					model.addAttribute("msg", "등록에 실패하였습니다.");
+				}
+				model.addAttribute("location", "/walking/write");
 			}
-			model.addAttribute("location", "/walking/write");
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

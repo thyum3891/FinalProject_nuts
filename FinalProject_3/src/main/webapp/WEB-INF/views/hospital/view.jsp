@@ -153,9 +153,9 @@
 			<div class="row">
 				<div class="col-7">
 					<div class="card border-primary mb-4 ">
-						<div class="row">
-							<div class="card-body" style="height: 630px; width: 900px">
-								<table class="table ml-1">
+						<div class="">
+							<div class="" >
+								<table class="table card-body" style=" width: 580px  ;margin: auto" >
 									<thead>
 										<tr scope="col " class="text-center font-base"
 											style="color: #BA9F81;">
@@ -169,7 +169,7 @@
 									<c:forEach var="hospital" items="${hospList}">
 
 										<tr class="text-surroundAir text-center font-small hpList"
-											style="cursor: pointer;"
+											style="cursor: pointer; "
 											onclick="OnClickList('${hospital.venue}')">
 											<td >${hospital.title}</td>
 
@@ -237,7 +237,7 @@
 				<div class="col-5 ">
 					<div id="map" class="card border-primary mb-3 mt-4 ">
 						<div class="row no-gutters ">
-							<div class="card px-7 py-2 " style="height: 580px;">
+							<div class="card px-7 py-2 " style="height: 700px;">
 								<div id="mapListings"></div>
 							</div>
 						</div>

@@ -4,11 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:set var = "testId" value="test2"/>
 
 
 
-<div class="section section-lg pt-0">
+<div class=" pt-5">
 	<div class="container mt-n11 ">
 				<div class="row">
 			<div class="col-md-12 ">
@@ -66,8 +65,14 @@
 										<li class="list-group-item small p-0" fontJua><br>${wp.contant}</li>
 									</ul>
 									<div class="col-12 mt-4">
+									<c:if test="${loginMember != null }">
 										<button id="btn${wp.party_no}" class="btn btn-lg btn2 btn-block" type="button" 
-										onclick="partyReq('${wp.party_no}', 'test2', '${wp.writer_id}')">신청</button>
+										onclick="partyReq('${wp.party_no}', '${loginMember.id}', '${wp.writer_id}')">신청</button>
+									</c:if>
+									<c:if test="${loginMember == null }">
+										<button id="btn${wp.party_no}" class="btn btn-lg btn2 btn-block" type="button" 
+										 disabled="disabled">로그인 후 이용해주세요</button>
+									</c:if>
 									</div>
 								</div>
 							</div>
@@ -191,7 +196,7 @@ function btnFn(){
 	partyReq('${wp.party_no}', 'test2', '${wp.writer_id}');
 }
 
-if(${loginId =! null}){
+<c:if test="${loginMember == null}">
 	var content${wp.party_no} = '<div class="bubble" >'+
 	'<div class="row">'+
 	'    <img src="${path}/resources/images/KakaoTalk_20220125_140624405.jpg" style="width: 70px; height: 70px;">'+
@@ -204,7 +209,7 @@ if(${loginId =! null}){
 	'            <h6 class="font-small text-surroundAir mt-1 ml-1" style="color: #BA9F81;">인기도 : ${wp.avg}</h6>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    '+
 	'        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '+
 	'    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               '+
-	'    <button id="btn2${wp.party_no}" class="btn btn-primary animate-up-2 ml-4 mt-3" type="button" onclick="btnFn()" style="background-color: #5E4D44; border-color: #5E4D44; height: 40px;" disabled>로그인이 필요합니다.</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '+
+	'    <button id="btn2${wp.party_no}" class="btn btn-primary animate-up-2 ml-4 mt-3" type="button" onclick="btnFn()" style="background-color: #5E4D44; border-color: #5E4D44; height: 40px;" disabled>신청</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           '+
 	'</div>'+
 	'<div style="position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;cursor: pointer;" onclick="closeOverlay${wp.party_no}()" >x</div>'+
 	'<div class="text-surroundAir mt-2 ml-2" style="color: #5E4D44;">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         '+
@@ -236,11 +241,9 @@ if(${loginId =! null}){
 	'    </div>'+
 	'</div>'+
 	'</div>';
-	
-}
-
-if(${loginId =! null}){
-	if('${reqStr}'.indexOf('${wp.party_no}'+'${testId}') >= 0){
+</c:if>	
+<c:if test="${loginMember != null}">
+	if('${reqStr}'.indexOf('${wp.party_no}'+'${loginMember.id}') >= 0){
 	var content${wp.party_no} = '<div class="bubble" >'+
 		'<div class="row">'+
 		'    <img src="${path}/resources/images/KakaoTalk_20220125_140624405.jpg" style="width: 70px; height: 70px;">'+
@@ -331,7 +334,7 @@ if(${loginId =! null}){
 		'</div>'+
 		'</div>';
 	}
-}
+</c:if>
 //마커 위에 커스텀오버레이를 표시합니다
 //마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
