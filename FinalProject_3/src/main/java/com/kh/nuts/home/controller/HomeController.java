@@ -49,7 +49,6 @@ public class HomeController {
 		List<Notice> noticeList = null;
 		List<Hotdog> hotdogList = null;
 		int count = hpService.selectCountbyHospital("", "");
-		System.out.println(count);
 		PageInfo pageInfo = new PageInfo(1, 1, count, 6);
 		hospList = hpService.selectHospitalBySearch("", "", pageInfo);
 		model.addAttribute("hospList", hospList);
@@ -62,7 +61,6 @@ public class HomeController {
 		pageInfo = new PageInfo(1, 1, count, 5);
 		
 		noticeList = noticeService.getNoticeList(pageInfo, null, null);
-		System.out.println(noticeList);
 		model.addAttribute("noticeList", noticeList);
 		
 		hotdogList = hotdogService.selectHotdogList(pageInfo, "", "");

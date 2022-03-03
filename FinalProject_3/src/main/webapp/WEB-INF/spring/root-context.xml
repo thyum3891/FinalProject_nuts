@@ -7,7 +7,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
 			<context:property-placeholder location="classpath:driver.properties"/>
 			<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close"
@@ -29,7 +28,6 @@
 		p:typeHandlersPackage="com.kh.mybatis.common.*"
 		p:dataSource-ref="dataSource"
 	/>
-	<!-- 실제 마이바티스에서 사용할 Session 정의 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
 		c:sqlSessionFactory-ref="sqlSessionFactory"
 	/>
@@ -38,7 +36,6 @@
 		p:basePackage="com.kh.nuts.*.mapper"	
 	/>
 	
-	<!-- 트랜잭션 매니저 설정 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource"
 	/>

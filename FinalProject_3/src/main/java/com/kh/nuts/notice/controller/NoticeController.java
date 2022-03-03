@@ -173,7 +173,6 @@ public class NoticeController {
 		}
 
 		if (reloadFile != null && reloadFile.isEmpty() == false) {
-			// 파일 저장하는 로직 구성
 			String rootPath = request.getSession().getServletContext().getRealPath("resources");
 			String savePath = rootPath + "/upload/notice";
 			

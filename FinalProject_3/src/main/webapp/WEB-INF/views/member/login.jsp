@@ -48,6 +48,9 @@
             font-size: 20px;
             letter-spacing: 3px;
         }
+        .btn, .btn-block, .btn-primary{
+            background-color: #5E4D44;
+        }
     </style>
 
 </head>

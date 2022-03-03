@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.nuts.park.service.ParkService;
 import com.kh.nuts.park.vo.Park;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RequestMapping("/park")
 @Controller
 public class ParkController {
@@ -21,6 +24,7 @@ public class ParkController {
 	
 	@RequestMapping("/list")
 	public String list (Model model, String lat, String lng, String addr) {
+		log.info("공원 리스트 불러옴");
 		if(lat != null && lng != null) {
 		model.addAttribute("lat", lat);
 		model.addAttribute("lng", lng);

@@ -3,7 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 실질적인 SQL이 들어가는 Mapper -->
 <mapper namespace="com.kh.nuts.walking.mapper.WalkingMapper">
 
 <resultMap type="WalkingParty" id="walkingPartyMap">
@@ -67,8 +66,6 @@
 		ORDER BY start_time
 	</select>
 
-	
-
 	<delete id="deleteWalkingParty" parameterType="_int" >
 		DELETE FROM WORKING_PARTY WHERE PARTY_NO = #{party_no}
 	</delete>
@@ -88,6 +85,7 @@
 	<select id="selectReqIdInfo" parameterType="string" resultType="WalkingRequest">
 		SELECT wr.*, m.nick_name NICK_NAME, m.profile_re_name profile  FROM walking_request wr JOIN MEMBER m ON wr.REQUEST_ID = m.ID WHERE PARTY_NO = #{party_no} AND wr.REQ_STAT = '확인 필요' 
 	</select>
+	
 	<select id="ReqCount" parameterType="string" resultType="_int">
 		SELECT count(*)  FROM walking_request wr JOIN MEMBER m ON wr.REQUEST_ID = m.ID WHERE PARTY_NO = #{party_no} AND wr.REQ_STAT = '확인 필요' 
 	</select>
@@ -109,4 +107,5 @@
 	<delete id="deleteReq">
 		DELETE FROM walking_request WHERE WR_NO = #{wr_no}
 	</delete>
+	
 </mapper>

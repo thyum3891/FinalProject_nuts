@@ -33,7 +33,7 @@
                                         	</span>
                                     	</div>
                                     	<select class="custom-select text-surroundAir" id="addr" name="addr" style="border-color: #5E4D44;" value="" required="required">
-														<option value="">서울특별시</option>
+														<option value="강남구">서울특별시</option>
 														<option value="강남구">강남구</option>
 														<option value="강동구">강동구</option>
 														<option value="강북구">강북구</option>
@@ -103,7 +103,7 @@
 	
 	
 	<script type="text/javascript">
-    mapQuery("");
+    mapQuery("강남구");
 	function mapQuery(addr){
 		
 		navigator.geolocation.getCurrentPosition(function(position) {

@@ -64,7 +64,7 @@
         <!-- Hero -->
         <section class="section section-header bg pb-12" style="background-color: rgba(253, 225, 148,1)">
             <div class="container ">
-                <div class="row justify-content-between align-items-center">
+                <div class="row justify-content-between align-items-center mx-6">
                     <div class="col-12 col-md-5 order-lg-1 ">
                         <h4 class="display-4  mb-0 " style="text-align: center; color: #5E4D44;">오늘 당신의 산책메이트는<br> 누구인가요?<br></h4>
                         <br>
@@ -84,7 +84,7 @@
 <div id="wp" class="mt-n6 mb-n8 blog-prc" style="height: 843px">
        
       </div>
-        <section class="section section-lg pt-0 ">
+        <section class="section section-lg pt-0 mx-11">
             <div class="container ">
                 <div class="row ">
                     <div class="col-12" style="color: #5E4D44;">
@@ -232,7 +232,7 @@
                     
                  
                 <div class="row">
-                    <div class=" col-5 mt-7">
+                    <div class=" col-6 mt-7">
                         <!-- title -->
                         <div class="col" style="color: #5E4D44;">
                             <h3 class="mb-3 mx-4 " style="color: #5E4D44;"> <span style="color: #5E4D44;"></span> 공지사항</h3>
@@ -269,7 +269,7 @@
 
 
 
-                    <div class="col-7 mt-7">
+                    <div class="col-6 mt-7">
                         <!-- title -->
                         <div class="col" style="color: #5E4D44;">
                             <h3 class="mb-3" style="color: #5E4D44;"> <span style="color: #5E4D44;"></span> Best 핫도그</h3>

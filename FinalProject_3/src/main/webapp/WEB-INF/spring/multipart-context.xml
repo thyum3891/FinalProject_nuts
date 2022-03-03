@@ -5,10 +5,6 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- 
-		파일 업로드 시 사용할 MultipartResolver 등록
-			p:maxUploadSize : 최대 업로드 파일 크기를 지정 (10MB)
-	 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
 		p:maxUploadSize="10485760"
 	/>

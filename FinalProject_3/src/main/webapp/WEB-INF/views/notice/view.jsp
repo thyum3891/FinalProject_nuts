@@ -72,7 +72,7 @@
                                 </div>
                                 <div style="width: 100px; height: 100px; display: inline-block; float: left;">
                                     <h5 class="mb-2 font mt-4" style="color: #5E4D44; padding-left: 20px; text-align: left; font-size: 20px;">${notice.nick_name }</h5>
-                                    <p class="font" style="color: #947b6d; padding-left: 20px; text-align: left; font-size: 18px;">조회수 123</p>
+                                    <p class="font" style="color: #947b6d; padding-left: 20px; text-align: left; font-size: 18px;">${fn:substring(notice.write_date,0,10)}</p>
                                 </div>
                                 <div style="width: 500px; height: 100px; display: inline-block; float: center;">
                                     <p class="font mt-3" style="color: #5E4D44; font-size: 25px;">${notice.title }</p>
