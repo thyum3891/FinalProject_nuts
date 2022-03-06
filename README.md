@@ -1,7 +1,20 @@
 # FinalProject_nuts
 파이널 프로젝트 3팀 견과류
 
+![image](https://user-images.githubusercontent.com/86838449/156928440-65d07c12-b21d-4479-9c77-06f68901464b.png)
 
+---
+![image](https://user-images.githubusercontent.com/86838449/156928356-da6b2f1a-a913-42da-9af1-ab31874ff3a2.png)
+---
+
+
+![image](https://user-images.githubusercontent.com/86838449/156928212-2c9677c8-22f1-4904-8c9d-a365ad6ab94b.png)
+---
+
+
+
+기능
+---
 ![image](https://user-images.githubusercontent.com/86838449/156927885-3841ad5c-9d9d-4eff-8508-8d2b9a11c9cf.png)
 ---
 ![image](https://user-images.githubusercontent.com/86838449/156927905-e48984cf-36fe-4814-bf34-7db82845552d.png)
